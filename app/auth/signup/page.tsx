@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,6 +26,17 @@ export default function SignUpPage() {
   const [error, setError] = useState('');
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [currentTime, setCurrentTime] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setCurrentTime(`${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`);
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const validateFullName = (value: string): string | undefined => {
     if (!value.trim()) return 'Full name is required';
@@ -152,7 +163,7 @@ export default function SignUpPage() {
       {/* Status Bar */}
       <div className="h-11 bg-[#F2F2F7] flex justify-between items-center px-5 text-sm font-semibold text-black">
         <div className="flex items-center gap-1">
-          <span>9:41</span>
+          <span>{currentTime}</span>
         </div>
         <div className="flex items-center gap-1">
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

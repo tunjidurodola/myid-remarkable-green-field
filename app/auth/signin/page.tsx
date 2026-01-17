@@ -24,6 +24,17 @@ export default function SignInPage() {
     password: false,
   });
   const [passkeyAvailable, setPasskeyAvailable] = useState(false);
+  const [currentTime, setCurrentTime] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setCurrentTime(`${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`);
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     // Check if passkey authentication is available
@@ -170,7 +181,7 @@ export default function SignInPage() {
       {/* Status Bar */}
       <div className="h-11 bg-[#F2F2F7] flex justify-between items-center px-5 text-sm font-semibold text-black">
         <div className="flex items-center gap-1">
-          <span>9:41</span>
+          <span>{currentTime}</span>
         </div>
         <div className="flex items-center gap-1">
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
