@@ -3,18 +3,14 @@
 import { useState, useEffect } from 'react';
 
 interface StatusBarProps {
-  /** Use static time (9:41) instead of real clock */
-  staticTime?: boolean;
   /** Custom class name */
   className?: string;
 }
 
-export function StatusBar({ staticTime = false, className = '' }: StatusBarProps) {
-  const [time, setTime] = useState('9:41');
+export function StatusBar({ className = '' }: StatusBarProps) {
+  const [time, setTime] = useState('');
 
   useEffect(() => {
-    if (staticTime) return;
-
     const updateTime = () => {
       const now = new Date();
       const hours = now.getHours();
@@ -26,7 +22,7 @@ export function StatusBar({ staticTime = false, className = '' }: StatusBarProps
     const interval = setInterval(updateTime, 1000);
 
     return () => clearInterval(interval);
-  }, [staticTime]);
+  }, []);
 
   return (
     <div className={`h-11 bg-white dark:bg-black flex justify-between items-center px-5 text-sm font-semibold text-black dark:text-white ${className}`}>
