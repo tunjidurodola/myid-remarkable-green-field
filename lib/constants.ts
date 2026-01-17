@@ -1,8 +1,9 @@
 // pocketOne OID namespace constants
 export const OID_NAMESPACE = {
-  MASTER_CODE: '1.3.6.1.4.1.54392.5.1824',
-  TRUST_CODE: '1.3.6.1.4.1.54392.5.1825',
-  CLAIM_ROOT: '1.3.6.1.4.1.54392.5',
+  BASE: '1.3.6.1.4.1.64273',
+  CLAIM_ROOT: '1.3.6.1.4.1.64273.5',
+  MASTER_CODE: '1.3.6.1.4.1.64273.5.1824',
+  TRUST_CODE: '1.3.6.1.4.1.64273.5.1825',
 } as const;
 
 // Credential format identifiers
