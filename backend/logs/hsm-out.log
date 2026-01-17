@@ -1,0 +1,1356 @@
+2026-01-17 08:06:53 +04:00: HSM Backend Service running on port 3001
+2026-01-17 08:06:53 +04:00: HSM Configuration:
+2026-01-17 08:06:53 +04:00:   Host: 172.27.127.129
+2026-01-17 08:06:53 +04:00:   Slot: undefined
+2026-01-17 08:06:53 +04:00:   Label: undefined
+2026-01-17 08:06:53 +04:00: 
+Endpoints:
+2026-01-17 08:06:53 +04:00:   POST /api/crypto/keygen - Generate key pair
+2026-01-17 08:06:53 +04:00:   POST /api/crypto/sign - Sign data
+2026-01-17 08:06:53 +04:00:   POST /api/crypto/cert/issue - Issue certificate
+2026-01-17 08:06:53 +04:00:   POST /api/crypto/qes/sign - QES signing
+2026-01-17 09:01:02 +04:00: HSM Backend Service running on port 3001
+2026-01-17 09:01:02 +04:00: HSM Configuration:
+2026-01-17 09:01:02 +04:00:   Host: 172.27.127.129
+2026-01-17 09:01:02 +04:00:   Slot: undefined
+2026-01-17 09:01:02 +04:00:   Label: undefined
+2026-01-17 09:01:02 +04:00: 
+Endpoints:
+2026-01-17 09:01:02 +04:00:   POST /api/crypto/keygen - Generate key pair
+2026-01-17 09:01:02 +04:00:   POST /api/crypto/sign - Sign data
+2026-01-17 09:01:02 +04:00:   POST /api/crypto/cert/issue - Issue certificate
+2026-01-17 09:01:02 +04:00:   POST /api/crypto/qes/sign - QES signing
+2026-01-17 15:56:34 +04:00: HSM Backend Service running on port 3001
+2026-01-17 15:56:34 +04:00: HSM Configuration:
+2026-01-17 15:56:34 +04:00:   Host: 172.27.127.129
+2026-01-17 15:56:34 +04:00:   Slot: undefined
+2026-01-17 15:56:34 +04:00:   Label: undefined
+2026-01-17 15:56:34 +04:00: 
+Endpoints:
+2026-01-17 15:56:34 +04:00:   POST /api/crypto/keygen - Generate key pair
+2026-01-17 15:56:34 +04:00:   POST /api/crypto/sign - Sign data
+2026-01-17 15:56:34 +04:00:   POST /api/crypto/cert/issue - Issue certificate
+2026-01-17 15:56:34 +04:00:   POST /api/crypto/qes/sign - QES signing
+2026-01-17 15:57:56 +04:00: HSM Backend Service running on port 3001
+2026-01-17 15:57:56 +04:00: HSM Configuration:
+2026-01-17 15:57:56 +04:00:   Host: 172.27.127.129
+2026-01-17 15:57:56 +04:00:   Slot: undefined
+2026-01-17 15:57:56 +04:00:   Label: undefined
+2026-01-17 15:57:56 +04:00: 
+Endpoints:
+2026-01-17 15:57:56 +04:00:   POST /api/crypto/keygen - Generate key pair
+2026-01-17 15:57:56 +04:00:   POST /api/crypto/sign - Sign data
+2026-01-17 15:57:56 +04:00:   POST /api/crypto/cert/issue - Issue certificate
+2026-01-17 15:57:56 +04:00:   POST /api/crypto/qes/sign - QES signing
+2026-01-17 16:00:21 +04:00: HSM Backend Service running on port 3001
+2026-01-17 16:00:21 +04:00: HSM Configuration:
+2026-01-17 16:00:21 +04:00:   Host: 172.27.127.129
+2026-01-17 16:00:21 +04:00:   Slot: undefined
+2026-01-17 16:00:21 +04:00:   Label: undefined
+2026-01-17 16:00:21 +04:00: 
+Endpoints:
+2026-01-17 16:00:21 +04:00:   POST /api/crypto/keygen - Generate key pair
+2026-01-17 16:00:21 +04:00:   POST /api/crypto/sign - Sign data
+2026-01-17 16:00:21 +04:00:   POST /api/crypto/cert/issue - Issue certificate
+2026-01-17 16:00:21 +04:00:   POST /api/crypto/qes/sign - QES signing
+2026-01-17 17:32:47 +04:00: HSM Backend Service running on port 3001
+2026-01-17 17:32:47 +04:00: HSM Configuration:
+2026-01-17 17:32:47 +04:00:   Host: 172.27.127.129
+2026-01-17 17:32:47 +04:00:   Slot: undefined
+2026-01-17 17:32:47 +04:00:   Label: undefined
+2026-01-17 17:32:47 +04:00: 
+Endpoints:
+2026-01-17 17:32:47 +04:00:   POST /api/crypto/keygen - Generate key pair
+2026-01-17 17:32:47 +04:00:   POST /api/crypto/sign - Sign data
+2026-01-17 17:32:47 +04:00:   POST /api/crypto/cert/issue - Issue certificate
+2026-01-17 17:32:47 +04:00:   POST /api/crypto/qes/sign - QES signing
+2026-01-17 18:08:02 +04:00: 
+============================================================
+2026-01-17 18:08:02 +04:00:   myID.africa Backend Service
+2026-01-17 18:08:02 +04:00: ============================================================
+2026-01-17 18:08:02 +04:00:   Port: 3001
+2026-01-17 18:08:02 +04:00:   Environment: production
+2026-01-17 18:08:02 +04:00: 
+  HSM Configuration:
+2026-01-17 18:08:02 +04:00:     Host: 172.27.127.129
+2026-01-17 18:08:02 +04:00:     Slot: 0
+2026-01-17 18:08:02 +04:00:     Label: pocketOne_CA
+2026-01-17 18:08:02 +04:00: 
+  Available Endpoints:
+2026-01-17 18:08:02 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:08:02 +04:00:   Health:
+2026-01-17 18:08:02 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:08:02 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:08:02 +04:00: 
+  Authentication:
+2026-01-17 18:08:02 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:08:02 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:08:02 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:08:02 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:08:02 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:08:02 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:08:02 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:08:02 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:08:02 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:08:02 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:08:02 +04:00: 
+  User Profile:
+2026-01-17 18:08:02 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:08:02 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:08:02 +04:00: 
+  MasterCode:
+2026-01-17 18:08:02 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:08:02 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:08:02 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:08:02 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:08:02 +04:00: 
+  TrustCode:
+2026-01-17 18:08:02 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:08:02 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:08:02 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:08:02 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:08:02 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:08:02 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:08:02 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:08:02 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:08:02 +04:00: ============================================================
+
+2026-01-17 18:08:02 +04:00: Redis cluster connection closed
+2026-01-17 18:08:02 +04:00: Redis cluster connection closed
+2026-01-17 18:08:02 +04:00: Redis cluster connection closed
+2026-01-17 18:08:02 +04:00: Redis cluster reconnecting...
+2026-01-17 18:08:02 +04:00: Redis cluster connection closed
+2026-01-17 18:08:02 +04:00: Redis cluster connection closed
+2026-01-17 18:08:02 +04:00: Redis cluster connection closed
+2026-01-17 18:08:02 +04:00: Redis cluster reconnecting...
+2026-01-17 18:08:03 +04:00: Redis cluster connection closed
+2026-01-17 18:08:03 +04:00: Redis cluster connection closed
+2026-01-17 18:08:03 +04:00: Redis cluster connection closed
+2026-01-17 18:08:03 +04:00: Redis cluster reconnecting...
+2026-01-17 18:08:03 +04:00: Redis cluster connection closed
+2026-01-17 18:08:03 +04:00: Redis cluster connection closed
+2026-01-17 18:08:03 +04:00: Redis cluster connection closed
+2026-01-17 18:09:15 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:10:20 +04:00: 
+============================================================
+2026-01-17 18:10:20 +04:00:   myID.africa Backend Service
+2026-01-17 18:10:20 +04:00: ============================================================
+2026-01-17 18:10:20 +04:00:   Port: 3001
+2026-01-17 18:10:20 +04:00:   Environment: production
+2026-01-17 18:10:20 +04:00: 
+  HSM Configuration:
+2026-01-17 18:10:20 +04:00:     Host: 172.27.127.129
+2026-01-17 18:10:20 +04:00:     Slot: 0
+2026-01-17 18:10:20 +04:00:     Label: pocketOne_CA
+2026-01-17 18:10:20 +04:00: 
+  Available Endpoints:
+2026-01-17 18:10:20 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:10:20 +04:00:   Health:
+2026-01-17 18:10:20 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:10:20 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:10:20 +04:00: 
+  Authentication:
+2026-01-17 18:10:20 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:10:20 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:10:20 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:10:20 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:10:20 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:10:20 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:10:20 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:10:20 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:10:20 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:10:20 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:10:20 +04:00: 
+  User Profile:
+2026-01-17 18:10:20 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:10:20 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:10:20 +04:00: 
+  MasterCode:
+2026-01-17 18:10:20 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:10:20 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:10:20 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:10:20 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:10:20 +04:00: 
+  TrustCode:
+2026-01-17 18:10:20 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:10:20 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:10:20 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:10:20 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:10:20 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:10:20 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:10:20 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:10:20 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:10:20 +04:00: ============================================================
+
+2026-01-17 18:10:20 +04:00: Redis connected
+2026-01-17 18:10:21 +04:00: Redis connected
+2026-01-17 18:10:21 +04:00: Redis connected
+2026-01-17 18:10:22 +04:00: Redis connected
+2026-01-17 18:11:18 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:11:19 +04:00: 
+============================================================
+2026-01-17 18:11:19 +04:00:   myID.africa Backend Service
+2026-01-17 18:11:19 +04:00: ============================================================
+2026-01-17 18:11:19 +04:00:   Port: 3001
+2026-01-17 18:11:19 +04:00:   Environment: production
+2026-01-17 18:11:19 +04:00: 
+  HSM Configuration:
+2026-01-17 18:11:19 +04:00:     Host: 172.27.127.129
+2026-01-17 18:11:19 +04:00:     Slot: 0
+2026-01-17 18:11:19 +04:00:     Label: pocketOne_CA
+2026-01-17 18:11:19 +04:00: 
+  Available Endpoints:
+2026-01-17 18:11:19 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:11:19 +04:00:   Health:
+2026-01-17 18:11:19 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:11:19 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:11:19 +04:00: 
+  Authentication:
+2026-01-17 18:11:19 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:11:19 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:11:19 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:11:19 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:11:19 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:11:19 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:11:19 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:11:19 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:11:19 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:11:19 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:11:19 +04:00: 
+  User Profile:
+2026-01-17 18:11:19 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:11:19 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:11:19 +04:00: 
+  MasterCode:
+2026-01-17 18:11:19 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:11:19 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:11:19 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:11:19 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:11:19 +04:00: 
+  TrustCode:
+2026-01-17 18:11:19 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:11:19 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:11:19 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:11:19 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:11:19 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:11:19 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:11:19 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:11:19 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:11:19 +04:00: ============================================================
+
+2026-01-17 18:11:19 +04:00: Redis connected
+2026-01-17 18:11:19 +04:00: Redis connected
+2026-01-17 18:11:19 +04:00: Redis connected
+2026-01-17 18:11:20 +04:00: Redis connected
+2026-01-17 18:12:32 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:12:32 +04:00: 
+============================================================
+2026-01-17 18:12:32 +04:00:   myID.africa Backend Service
+2026-01-17 18:12:32 +04:00: ============================================================
+2026-01-17 18:12:32 +04:00:   Port: 3001
+2026-01-17 18:12:32 +04:00:   Environment: production
+2026-01-17 18:12:32 +04:00: 
+  HSM Configuration:
+2026-01-17 18:12:32 +04:00:     Host: 172.27.127.129
+2026-01-17 18:12:32 +04:00:     Slot: 0
+2026-01-17 18:12:32 +04:00:     Label: pocketOne_CA
+2026-01-17 18:12:32 +04:00: 
+  Available Endpoints:
+2026-01-17 18:12:32 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:12:32 +04:00:   Health:
+2026-01-17 18:12:32 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:12:32 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:12:32 +04:00: 
+  Authentication:
+2026-01-17 18:12:32 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:12:32 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:12:32 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:12:32 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:12:32 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:12:32 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:12:32 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:12:32 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:12:32 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:12:32 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:12:32 +04:00: 
+  User Profile:
+2026-01-17 18:12:32 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:12:32 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:12:32 +04:00: 
+  MasterCode:
+2026-01-17 18:12:32 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:12:32 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:12:32 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:12:32 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:12:32 +04:00: 
+  TrustCode:
+2026-01-17 18:12:32 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:12:32 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:12:32 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:12:32 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:12:32 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:12:32 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:12:32 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:12:32 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:12:32 +04:00: ============================================================
+
+2026-01-17 18:12:32 +04:00: Redis connected
+2026-01-17 18:12:32 +04:00: Redis connected
+2026-01-17 18:12:33 +04:00: Redis connected
+2026-01-17 18:12:33 +04:00: Redis connected
+2026-01-17 18:16:02 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:16:03 +04:00: Database config - DB_HOST: undefined
+2026-01-17 18:16:03 +04:00: Database: Using Unix socket at /var/run/postgresql
+2026-01-17 18:16:03 +04:00: 
+============================================================
+2026-01-17 18:16:03 +04:00:   myID.africa Backend Service
+2026-01-17 18:16:03 +04:00: ============================================================
+2026-01-17 18:16:03 +04:00:   Port: 3001
+2026-01-17 18:16:03 +04:00:   Environment: production
+2026-01-17 18:16:03 +04:00: 
+  HSM Configuration:
+2026-01-17 18:16:03 +04:00:     Host: 172.27.127.129
+2026-01-17 18:16:03 +04:00:     Slot: 0
+2026-01-17 18:16:03 +04:00:     Label: pocketOne_CA
+2026-01-17 18:16:03 +04:00: 
+  Available Endpoints:
+2026-01-17 18:16:03 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:16:03 +04:00:   Health:
+2026-01-17 18:16:03 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:16:03 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:16:03 +04:00: 
+  Authentication:
+2026-01-17 18:16:03 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:16:03 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:16:03 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:16:03 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:16:03 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:16:03 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:16:03 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:16:03 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:16:03 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:16:03 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:16:03 +04:00: 
+  User Profile:
+2026-01-17 18:16:03 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:16:03 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:16:03 +04:00: 
+  MasterCode:
+2026-01-17 18:16:03 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:16:03 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:16:03 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:16:03 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:16:03 +04:00: 
+  TrustCode:
+2026-01-17 18:16:03 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:16:03 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:16:03 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:16:03 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:16:03 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:16:03 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:16:03 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:16:03 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:16:03 +04:00: ============================================================
+
+2026-01-17 18:16:03 +04:00: Redis connected
+2026-01-17 18:16:03 +04:00: Redis connected
+2026-01-17 18:16:03 +04:00: Redis connected
+2026-01-17 18:16:04 +04:00: Redis connected
+2026-01-17 18:16:39 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:16:39 +04:00: Database config - DB_HOST: 192.168.0.5
+2026-01-17 18:16:39 +04:00: Database: Using TCP connection to 192.168.0.5 : 5432
+2026-01-17 18:16:39 +04:00: 
+============================================================
+2026-01-17 18:16:39 +04:00:   myID.africa Backend Service
+2026-01-17 18:16:39 +04:00: ============================================================
+2026-01-17 18:16:39 +04:00:   Port: 3001
+2026-01-17 18:16:39 +04:00:   Environment: production
+2026-01-17 18:16:39 +04:00: 
+  HSM Configuration:
+2026-01-17 18:16:39 +04:00:     Host: 172.27.127.129
+2026-01-17 18:16:39 +04:00:     Slot: 0
+2026-01-17 18:16:39 +04:00:     Label: pocketOne_CA
+2026-01-17 18:16:39 +04:00: 
+  Available Endpoints:
+2026-01-17 18:16:39 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:16:39 +04:00:   Health:
+2026-01-17 18:16:39 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:16:39 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:16:39 +04:00: 
+  Authentication:
+2026-01-17 18:16:39 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:16:39 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:16:39 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:16:39 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:16:39 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:16:39 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:16:39 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:16:39 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:16:39 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:16:39 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:16:39 +04:00: 
+  User Profile:
+2026-01-17 18:16:39 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:16:39 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:16:39 +04:00: 
+  MasterCode:
+2026-01-17 18:16:39 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:16:39 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:16:39 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:16:39 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:16:39 +04:00: 
+  TrustCode:
+2026-01-17 18:16:39 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:16:39 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:16:39 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:16:39 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:16:39 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:16:39 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:16:39 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:16:39 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:16:39 +04:00: ============================================================
+
+2026-01-17 18:16:39 +04:00: Redis connected
+2026-01-17 18:16:40 +04:00: Redis connected
+2026-01-17 18:16:40 +04:00: Redis connected
+2026-01-17 18:16:41 +04:00: Redis connected
+2026-01-17 18:16:50 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:16:50 +04:00: Database config - DB_HOST: 192.168.0.5
+2026-01-17 18:16:50 +04:00: Database: Using TCP connection to 192.168.0.5 : 5432
+2026-01-17 18:16:50 +04:00: 
+============================================================
+2026-01-17 18:16:50 +04:00:   myID.africa Backend Service
+2026-01-17 18:16:50 +04:00: ============================================================
+2026-01-17 18:16:50 +04:00:   Port: 6321
+2026-01-17 18:16:50 +04:00:   Environment: production
+2026-01-17 18:16:50 +04:00: 
+  HSM Configuration:
+2026-01-17 18:16:50 +04:00:     Host: 172.27.127.129
+2026-01-17 18:16:50 +04:00:     Slot: 0
+2026-01-17 18:16:50 +04:00:     Label: pocketOne_CA
+2026-01-17 18:16:50 +04:00: 
+  Available Endpoints:
+2026-01-17 18:16:50 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:16:50 +04:00:   Health:
+2026-01-17 18:16:50 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:16:50 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:16:50 +04:00: 
+  Authentication:
+2026-01-17 18:16:50 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:16:50 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:16:50 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:16:50 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:16:50 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:16:50 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:16:50 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:16:50 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:16:50 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:16:50 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:16:50 +04:00: 
+  User Profile:
+2026-01-17 18:16:50 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:16:50 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:16:50 +04:00: 
+  MasterCode:
+2026-01-17 18:16:50 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:16:50 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:16:50 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:16:50 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:16:50 +04:00: 
+  TrustCode:
+2026-01-17 18:16:50 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:16:50 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:16:50 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:16:50 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:16:50 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:16:50 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:16:50 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:16:50 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:16:50 +04:00: ============================================================
+
+2026-01-17 18:16:50 +04:00: Redis connected
+2026-01-17 18:16:50 +04:00: Redis connection closed
+2026-01-17 18:16:51 +04:00: Redis connected
+2026-01-17 18:16:51 +04:00: Redis connection closed
+2026-01-17 18:16:51 +04:00: Redis connected
+2026-01-17 18:16:51 +04:00: Redis connection closed
+2026-01-17 18:16:52 +04:00: Redis connected
+2026-01-17 18:16:52 +04:00: Redis connection closed
+2026-01-17 18:17:38 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:17:39 +04:00: Database config - DB_HOST: 192.168.0.5
+2026-01-17 18:17:39 +04:00: Database: Using TCP connection to 192.168.0.5 : 5432
+2026-01-17 18:17:39 +04:00: 
+============================================================
+2026-01-17 18:17:39 +04:00:   myID.africa Backend Service
+2026-01-17 18:17:39 +04:00: ============================================================
+2026-01-17 18:17:39 +04:00:   Port: 6321
+2026-01-17 18:17:39 +04:00:   Environment: production
+2026-01-17 18:17:39 +04:00: 
+  HSM Configuration:
+2026-01-17 18:17:39 +04:00:     Host: 172.27.127.129
+2026-01-17 18:17:39 +04:00:     Slot: 0
+2026-01-17 18:17:39 +04:00:     Label: pocketOne_CA
+2026-01-17 18:17:39 +04:00: 
+  Available Endpoints:
+2026-01-17 18:17:39 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:17:39 +04:00:   Health:
+2026-01-17 18:17:39 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:17:39 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:17:39 +04:00: 
+  Authentication:
+2026-01-17 18:17:39 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:17:39 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:17:39 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:17:39 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:17:39 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:17:39 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:17:39 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:17:39 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:17:39 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:17:39 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:17:39 +04:00: 
+  User Profile:
+2026-01-17 18:17:39 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:17:39 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:17:39 +04:00: 
+  MasterCode:
+2026-01-17 18:17:39 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:17:39 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:17:39 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:17:39 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:17:39 +04:00: 
+  TrustCode:
+2026-01-17 18:17:39 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:17:39 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:17:39 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:17:39 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:17:39 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:17:39 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:17:39 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:17:39 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:17:39 +04:00: ============================================================
+
+2026-01-17 18:17:39 +04:00: Redis connected
+2026-01-17 18:17:39 +04:00: Redis connection closed
+2026-01-17 18:17:39 +04:00: Redis connected
+2026-01-17 18:17:39 +04:00: Redis connection closed
+2026-01-17 18:17:39 +04:00: Redis connected
+2026-01-17 18:17:39 +04:00: Redis connection closed
+2026-01-17 18:17:40 +04:00: Redis connected
+2026-01-17 18:17:40 +04:00: Redis connection closed
+2026-01-17 18:17:51 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:17:52 +04:00: Database config - DB_HOST: localhost
+2026-01-17 18:17:52 +04:00: Database: Using TCP connection to localhost : 5432
+2026-01-17 18:17:52 +04:00: 
+============================================================
+2026-01-17 18:17:52 +04:00:   myID.africa Backend Service
+2026-01-17 18:17:52 +04:00: ============================================================
+2026-01-17 18:17:52 +04:00:   Port: 6321
+2026-01-17 18:17:52 +04:00:   Environment: production
+2026-01-17 18:17:52 +04:00: 
+  HSM Configuration:
+2026-01-17 18:17:52 +04:00:     Host: 172.27.127.129
+2026-01-17 18:17:52 +04:00:     Slot: 0
+2026-01-17 18:17:52 +04:00:     Label: pocketOne_CA
+2026-01-17 18:17:52 +04:00: 
+  Available Endpoints:
+2026-01-17 18:17:52 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:17:52 +04:00:   Health:
+2026-01-17 18:17:52 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:17:52 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:17:52 +04:00: 
+  Authentication:
+2026-01-17 18:17:52 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:17:52 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:17:52 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:17:52 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:17:52 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:17:52 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:17:52 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:17:52 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:17:52 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:17:52 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:17:52 +04:00: 
+  User Profile:
+2026-01-17 18:17:52 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:17:52 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:17:52 +04:00: 
+  MasterCode:
+2026-01-17 18:17:52 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:17:52 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:17:52 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:17:52 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:17:52 +04:00: 
+  TrustCode:
+2026-01-17 18:17:52 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:17:52 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:17:52 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:17:52 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:17:52 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:17:52 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:17:52 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:17:52 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:17:52 +04:00: ============================================================
+
+2026-01-17 18:17:52 +04:00: Redis connected
+2026-01-17 18:17:52 +04:00: Redis connection closed
+2026-01-17 18:17:52 +04:00: Redis connected
+2026-01-17 18:17:52 +04:00: Redis connection closed
+2026-01-17 18:17:52 +04:00: Redis connected
+2026-01-17 18:17:52 +04:00: Redis connection closed
+2026-01-17 18:17:53 +04:00: Redis connected
+2026-01-17 18:17:53 +04:00: Redis connection closed
+2026-01-17 18:18:17 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:18:17 +04:00: Database config - DB_HOST: db.pocket.one
+2026-01-17 18:18:17 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+2026-01-17 18:18:17 +04:00: 
+============================================================
+2026-01-17 18:18:17 +04:00:   myID.africa Backend Service
+2026-01-17 18:18:17 +04:00: ============================================================
+2026-01-17 18:18:17 +04:00:   Port: 3001
+2026-01-17 18:18:17 +04:00:   Environment: production
+2026-01-17 18:18:17 +04:00: 
+  HSM Configuration:
+2026-01-17 18:18:17 +04:00:     Host: 172.27.127.129
+2026-01-17 18:18:17 +04:00:     Slot: 0
+2026-01-17 18:18:17 +04:00:     Label: pocketOne_CA
+2026-01-17 18:18:17 +04:00: 
+  Available Endpoints:
+2026-01-17 18:18:17 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:18:17 +04:00:   Health:
+2026-01-17 18:18:17 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:18:17 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:18:17 +04:00: 
+  Authentication:
+2026-01-17 18:18:17 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:18:17 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:18:17 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:18:17 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:18:17 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:18:17 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:18:17 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:18:17 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:18:17 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:18:17 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:18:17 +04:00: 
+  User Profile:
+2026-01-17 18:18:17 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:18:17 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:18:17 +04:00: 
+  MasterCode:
+2026-01-17 18:18:17 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:18:17 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:18:17 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:18:17 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:18:17 +04:00: 
+  TrustCode:
+2026-01-17 18:18:17 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:18:17 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:18:17 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:18:17 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:18:17 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:18:17 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:18:17 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:18:17 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:18:17 +04:00: ============================================================
+
+2026-01-17 18:18:17 +04:00: Redis connected
+2026-01-17 18:18:17 +04:00: Redis connection closed
+2026-01-17 18:18:18 +04:00: Redis connected
+2026-01-17 18:18:18 +04:00: Redis connection closed
+2026-01-17 18:18:18 +04:00: Redis connected
+2026-01-17 18:18:18 +04:00: Redis connection closed
+2026-01-17 18:18:19 +04:00: Redis connected
+2026-01-17 18:18:19 +04:00: Redis connection closed
+2026-01-17 18:18:42 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:18:42 +04:00: Database config - DB_HOST: db.pocket.one
+2026-01-17 18:18:42 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+2026-01-17 18:18:42 +04:00: Database: SSL enabled
+2026-01-17 18:18:42 +04:00: 
+============================================================
+2026-01-17 18:18:42 +04:00:   myID.africa Backend Service
+2026-01-17 18:18:42 +04:00: ============================================================
+2026-01-17 18:18:42 +04:00:   Port: 3001
+2026-01-17 18:18:42 +04:00:   Environment: production
+2026-01-17 18:18:42 +04:00: 
+  HSM Configuration:
+2026-01-17 18:18:42 +04:00:     Host: 172.27.127.129
+2026-01-17 18:18:42 +04:00:     Slot: 0
+2026-01-17 18:18:42 +04:00:     Label: pocketOne_CA
+2026-01-17 18:18:42 +04:00: 
+  Available Endpoints:
+2026-01-17 18:18:42 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:18:42 +04:00:   Health:
+2026-01-17 18:18:42 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:18:42 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:18:42 +04:00: 
+  Authentication:
+2026-01-17 18:18:42 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:18:42 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:18:42 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:18:42 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:18:42 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:18:42 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:18:42 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:18:42 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:18:42 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:18:42 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:18:42 +04:00: 
+  User Profile:
+2026-01-17 18:18:42 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:18:42 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:18:42 +04:00: 
+  MasterCode:
+2026-01-17 18:18:42 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:18:42 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:18:42 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:18:42 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:18:42 +04:00: 
+  TrustCode:
+2026-01-17 18:18:42 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:18:42 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:18:42 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:18:42 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:18:42 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:18:42 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:18:42 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:18:42 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:18:42 +04:00: ============================================================
+
+2026-01-17 18:18:42 +04:00: Redis connected
+2026-01-17 18:18:42 +04:00: Redis connection closed
+2026-01-17 18:18:43 +04:00: Redis connected
+2026-01-17 18:18:43 +04:00: Redis connection closed
+2026-01-17 18:18:43 +04:00: Redis connected
+2026-01-17 18:18:43 +04:00: Redis connection closed
+2026-01-17 18:18:44 +04:00: Redis connected
+2026-01-17 18:18:44 +04:00: Redis connection closed
+2026-01-17 18:19:48 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:19:50 +04:00: Database config - DB_HOST: db.pocket.one
+2026-01-17 18:19:50 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+2026-01-17 18:19:50 +04:00: Database: SSL enabled
+2026-01-17 18:19:50 +04:00: 
+============================================================
+2026-01-17 18:19:50 +04:00:   myID.africa Backend Service
+2026-01-17 18:19:50 +04:00: ============================================================
+2026-01-17 18:19:50 +04:00:   Port: 3001
+2026-01-17 18:19:50 +04:00:   Environment: development
+2026-01-17 18:19:50 +04:00: 
+  HSM Configuration:
+2026-01-17 18:19:50 +04:00:     Host: 172.27.127.129
+2026-01-17 18:19:50 +04:00:     Slot: 0
+2026-01-17 18:19:50 +04:00:     Label: pocketOne_CA
+2026-01-17 18:19:50 +04:00: 
+  Available Endpoints:
+2026-01-17 18:19:50 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:19:50 +04:00:   Health:
+2026-01-17 18:19:50 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:19:50 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:19:50 +04:00: 
+  Authentication:
+2026-01-17 18:19:50 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:19:50 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:19:50 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:19:50 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:19:50 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:19:50 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:19:50 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:19:50 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:19:50 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:19:50 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:19:50 +04:00: 
+  User Profile:
+2026-01-17 18:19:50 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:19:50 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:19:50 +04:00: 
+  MasterCode:
+2026-01-17 18:19:50 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:19:50 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:19:50 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:19:50 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:19:50 +04:00: 
+  TrustCode:
+2026-01-17 18:19:50 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:19:50 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:19:50 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:19:50 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:19:50 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:19:50 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:19:50 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:19:50 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:19:50 +04:00: ============================================================
+
+2026-01-17 18:19:50 +04:00: Redis connected
+2026-01-17 18:19:50 +04:00: Redis connection closed
+2026-01-17 18:19:50 +04:00: Redis connected
+2026-01-17 18:19:50 +04:00: Redis connection closed
+2026-01-17 18:19:50 +04:00: Redis connected
+2026-01-17 18:19:50 +04:00: Redis connection closed
+2026-01-17 18:19:51 +04:00: Redis connected
+2026-01-17 18:19:51 +04:00: Redis connection closed
+2026-01-17 18:19:54 +04:00: New database client connected
+2026-01-17 18:20:04 +04:00: New database client connected
+2026-01-17 18:20:04 +04:00: Query executed: {
+  text: 'SELECT NOW() as time, current_database() as database',
+  duration: 67,
+  rows: 1
+}
+2026-01-17 18:20:04 +04:00: GET /health - 200 (69ms)
+2026-01-17 18:20:15 +04:00: Query executed: {
+  text: 'SELECT u.user_id, u.keycloak_sub, u.status, u.created_at, u.updated_at,\n' +
+    '              ma.mc, ma.assi',
+  duration: 21313,
+  rows: 1
+}
+2026-01-17 18:20:15 +04:00: Query executed: {
+  text: 'SELECT trustcode, status, created_at, updated_at\n' +
+    '       FROM trustcodes\n' +
+    '       WHERE mastercode = $1',
+  duration: 8,
+  rows: 0
+}
+2026-01-17 18:20:15 +04:00: Query executed: {
+  text: 'SELECT COUNT(*) as count FROM passkey_credentials WHERE user_id = $1',
+  duration: 7,
+  rows: 1
+}
+2026-01-17 18:20:15 +04:00: GET /profile - 200 (21330ms)
+2026-01-17 18:20:20 +04:00: Query executed: {
+  text: 'SELECT mc FROM mastercode_assignments WHERE user_id = $1',
+  duration: 10,
+  rows: 1
+}
+2026-01-17 18:20:20 +04:00: Query executed: {
+  text: 'SELECT status FROM mastercodes WHERE mc = $1',
+  duration: 8,
+  rows: 1
+}
+2026-01-17 18:20:20 +04:00: POST /issue - 500 (20ms)
+2026-01-17 18:20:27 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:20:27 +04:00: Database config - DB_HOST: db.pocket.one
+2026-01-17 18:20:27 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+2026-01-17 18:20:27 +04:00: Database: SSL enabled
+2026-01-17 18:20:27 +04:00: 
+============================================================
+2026-01-17 18:20:27 +04:00:   myID.africa Backend Service
+2026-01-17 18:20:27 +04:00: ============================================================
+2026-01-17 18:20:27 +04:00:   Port: 3001
+2026-01-17 18:20:27 +04:00:   Environment: development
+2026-01-17 18:20:27 +04:00: 
+  HSM Configuration:
+2026-01-17 18:20:27 +04:00:     Host: 172.27.127.129
+2026-01-17 18:20:27 +04:00:     Slot: 0
+2026-01-17 18:20:27 +04:00:     Label: pocketOne_CA
+2026-01-17 18:20:27 +04:00: 
+  Available Endpoints:
+2026-01-17 18:20:27 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:20:27 +04:00:   Health:
+2026-01-17 18:20:27 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:20:27 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:20:27 +04:00: 
+  Authentication:
+2026-01-17 18:20:27 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:20:27 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:20:27 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:20:27 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:20:27 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:20:27 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:20:27 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:20:27 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:20:27 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:20:27 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:20:27 +04:00: 
+  User Profile:
+2026-01-17 18:20:27 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:20:27 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:20:27 +04:00: 
+  MasterCode:
+2026-01-17 18:20:27 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:20:27 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:20:27 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:20:27 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:20:27 +04:00: 
+  TrustCode:
+2026-01-17 18:20:27 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:20:27 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:20:27 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:20:27 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:20:27 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:20:27 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:20:27 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:20:27 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:20:27 +04:00: ============================================================
+
+2026-01-17 18:20:27 +04:00: Redis connected
+2026-01-17 18:20:28 +04:00: Redis connected
+2026-01-17 18:20:28 +04:00: Redis connected
+2026-01-17 18:20:29 +04:00: Redis connected
+2026-01-17 18:20:45 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:20:45 +04:00: Database config - DB_HOST: db.pocket.one
+2026-01-17 18:20:45 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+2026-01-17 18:20:45 +04:00: Database: SSL enabled
+2026-01-17 18:20:45 +04:00: 
+============================================================
+2026-01-17 18:20:45 +04:00:   myID.africa Backend Service
+2026-01-17 18:20:45 +04:00: ============================================================
+2026-01-17 18:20:45 +04:00:   Port: 3001
+2026-01-17 18:20:45 +04:00:   Environment: development
+2026-01-17 18:20:45 +04:00: 
+  HSM Configuration:
+2026-01-17 18:20:45 +04:00:     Host: 172.27.127.129
+2026-01-17 18:20:45 +04:00:     Slot: 0
+2026-01-17 18:20:45 +04:00:     Label: pocketOne_CA
+2026-01-17 18:20:45 +04:00: 
+  Available Endpoints:
+2026-01-17 18:20:45 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:20:45 +04:00:   Health:
+2026-01-17 18:20:45 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:20:45 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:20:45 +04:00: 
+  Authentication:
+2026-01-17 18:20:45 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:20:45 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:20:45 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:20:45 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:20:45 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:20:45 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:20:45 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:20:45 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:20:45 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:20:45 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:20:45 +04:00: 
+  User Profile:
+2026-01-17 18:20:45 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:20:45 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:20:45 +04:00: 
+  MasterCode:
+2026-01-17 18:20:45 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:20:45 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:20:45 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:20:45 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:20:45 +04:00: 
+  TrustCode:
+2026-01-17 18:20:45 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:20:45 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:20:45 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:20:45 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:20:45 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:20:45 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:20:45 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:20:45 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:20:45 +04:00: ============================================================
+
+2026-01-17 18:20:45 +04:00: Redis connected
+2026-01-17 18:20:45 +04:00: Redis connected
+2026-01-17 18:20:46 +04:00: Redis connected
+2026-01-17 18:20:46 +04:00: Redis connected
+2026-01-17 18:20:48 +04:00: POST /issue - 401 (3ms)
+2026-01-17 18:20:52 +04:00: New database client connected
+2026-01-17 18:20:52 +04:00: Query executed: {
+  text: 'SELECT u.user_id, u.keycloak_sub, u.password_hash, u.status,\n' +
+    '              ma.mc as mastercode\n' +
+    '     ',
+  duration: 70,
+  rows: 1
+}
+2026-01-17 18:20:52 +04:00: Query executed: {
+  text: 'UPDATE users SET updated_at = NOW() WHERE user_id = $1',
+  duration: 34,
+  rows: 1
+}
+2026-01-17 18:20:52 +04:00: POST /login - 200 (137ms)
+2026-01-17 18:20:57 +04:00: Query executed: {
+  text: 'SELECT mc FROM mastercode_assignments WHERE user_id = $1',
+  duration: 9,
+  rows: 1
+}
+2026-01-17 18:20:57 +04:00: Query executed: {
+  text: 'SELECT status FROM mastercodes WHERE mc = $1',
+  duration: 9,
+  rows: 1
+}
+2026-01-17 18:20:57 +04:00: Query executed: {
+  text: 'SELECT trustcode FROM trustcodes WHERE trustcode = $1',
+  duration: 9,
+  rows: 0
+}
+2026-01-17 18:20:57 +04:00: POST /issue - 500 (41ms)
+2026-01-17 18:21:15 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:21:15 +04:00: Database config - DB_HOST: db.pocket.one
+2026-01-17 18:21:15 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+2026-01-17 18:21:15 +04:00: Database: SSL enabled
+2026-01-17 18:21:15 +04:00: 
+============================================================
+2026-01-17 18:21:15 +04:00:   myID.africa Backend Service
+2026-01-17 18:21:15 +04:00: ============================================================
+2026-01-17 18:21:15 +04:00:   Port: 3001
+2026-01-17 18:21:15 +04:00:   Environment: development
+2026-01-17 18:21:15 +04:00: 
+  HSM Configuration:
+2026-01-17 18:21:15 +04:00:     Host: 172.27.127.129
+2026-01-17 18:21:15 +04:00:     Slot: 0
+2026-01-17 18:21:15 +04:00:     Label: pocketOne_CA
+2026-01-17 18:21:15 +04:00: 
+  Available Endpoints:
+2026-01-17 18:21:15 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:21:15 +04:00:   Health:
+2026-01-17 18:21:15 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:21:15 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:21:15 +04:00: 
+  Authentication:
+2026-01-17 18:21:15 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:21:15 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:21:15 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:21:15 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:21:15 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:21:15 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:21:15 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:21:15 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:21:15 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:21:15 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:21:15 +04:00: 
+  User Profile:
+2026-01-17 18:21:15 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:21:15 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:21:15 +04:00: 
+  MasterCode:
+2026-01-17 18:21:15 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:21:15 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:21:15 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:21:15 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:21:15 +04:00: 
+  TrustCode:
+2026-01-17 18:21:15 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:21:15 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:21:15 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:21:15 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:21:15 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:21:15 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:21:15 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:21:15 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:21:15 +04:00: ============================================================
+
+2026-01-17 18:21:15 +04:00: Redis connected
+2026-01-17 18:21:15 +04:00: Redis connected
+2026-01-17 18:21:16 +04:00: Redis connected
+2026-01-17 18:21:16 +04:00: Redis connected
+2026-01-17 18:21:18 +04:00: New database client connected
+2026-01-17 18:21:18 +04:00: Query executed: {
+  text: 'SELECT mc FROM mastercode_assignments WHERE user_id = $1',
+  duration: 82,
+  rows: 1
+}
+2026-01-17 18:21:18 +04:00: Query executed: {
+  text: 'SELECT status FROM mastercodes WHERE mc = $1',
+  duration: 9,
+  rows: 1
+}
+2026-01-17 18:21:18 +04:00: Query executed: {
+  text: 'SELECT trustcode FROM trustcodes WHERE trustcode = $1',
+  duration: 9,
+  rows: 0
+}
+2026-01-17 18:21:18 +04:00: Query executed: {
+  text: 'INSERT INTO trustcodes (trustcode, mastercode, status)\n' +
+    "       VALUES ($1, $2, 'active')",
+  duration: 21,
+  rows: 1
+}
+2026-01-17 18:21:18 +04:00: POST /issue - 201 (127ms)
+2026-01-17 18:21:23 +04:00: POST /verify - 200 (0ms)
+2026-01-17 18:24:43 +04:00: New database client connected
+2026-01-17 18:24:43 +04:00: Query executed: {
+  text: 'SELECT NOW() as time, current_database() as database',
+  duration: 57,
+  rows: 1
+}
+2026-01-17 18:24:43 +04:00: GET /health - 200 (58ms)
+2026-01-17 18:24:57 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:24:57 +04:00: Database config - DB_HOST: 
+2026-01-17 18:24:57 +04:00: Database: Using Unix socket at /var/run/postgresql
+2026-01-17 18:24:57 +04:00: Database: SSL enabled
+2026-01-17 18:24:57 +04:00: 
+============================================================
+2026-01-17 18:24:57 +04:00:   myID.africa Backend Service
+2026-01-17 18:24:57 +04:00: ============================================================
+2026-01-17 18:24:57 +04:00:   Port: 6321
+2026-01-17 18:24:57 +04:00:   Environment: development
+2026-01-17 18:24:57 +04:00: 
+  HSM Configuration:
+2026-01-17 18:24:57 +04:00:     Host: 172.27.127.129
+2026-01-17 18:24:57 +04:00:     Slot: 0
+2026-01-17 18:24:57 +04:00:     Label: pocketOne_CA
+2026-01-17 18:24:57 +04:00: 
+  Available Endpoints:
+2026-01-17 18:24:57 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:24:57 +04:00:   Health:
+2026-01-17 18:24:57 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:24:57 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:24:57 +04:00: 
+  Authentication:
+2026-01-17 18:24:57 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:24:57 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:24:57 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:24:57 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:24:57 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:24:57 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:24:57 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:24:57 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:24:57 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:24:57 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:24:57 +04:00: 
+  User Profile:
+2026-01-17 18:24:57 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:24:57 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:24:57 +04:00: 
+  MasterCode:
+2026-01-17 18:24:57 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:24:57 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:24:57 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:24:57 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:24:57 +04:00: 
+  TrustCode:
+2026-01-17 18:24:57 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:24:57 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:24:57 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:24:57 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:24:57 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:24:57 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:24:57 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:24:57 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:24:57 +04:00: ============================================================
+
+2026-01-17 18:24:57 +04:00: Redis connected
+2026-01-17 18:24:57 +04:00: Redis connection closed
+2026-01-17 18:24:57 +04:00: Redis connected
+2026-01-17 18:24:57 +04:00: Redis connection closed
+2026-01-17 18:24:58 +04:00: Redis connected
+2026-01-17 18:24:58 +04:00: Redis connection closed
+2026-01-17 18:24:58 +04:00: Redis connected
+2026-01-17 18:24:58 +04:00: Redis connection closed
+2026-01-17 18:25:06 +04:00: GET /health - 503 (4ms)
+2026-01-17 18:27:52 +04:00: 
+Shutting down gracefully...
+2026-01-17 18:27:52 +04:00: Database config - DB_HOST: db.pocket.one
+2026-01-17 18:27:52 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+2026-01-17 18:27:52 +04:00: Database: SSL enabled
+2026-01-17 18:27:52 +04:00: 
+============================================================
+2026-01-17 18:27:52 +04:00:   myID.africa Backend Service
+2026-01-17 18:27:52 +04:00: ============================================================
+2026-01-17 18:27:52 +04:00:   Port: 6321
+2026-01-17 18:27:52 +04:00:   Environment: development
+2026-01-17 18:27:52 +04:00: 
+  HSM Configuration:
+2026-01-17 18:27:52 +04:00:     Host: 172.27.127.129
+2026-01-17 18:27:52 +04:00:     Slot: 0
+2026-01-17 18:27:52 +04:00:     Label: pocketOne_CA
+2026-01-17 18:27:52 +04:00: 
+  Available Endpoints:
+2026-01-17 18:27:52 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 18:27:52 +04:00:   Health:
+2026-01-17 18:27:52 +04:00:     GET  /health               - Basic health check
+2026-01-17 18:27:52 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 18:27:52 +04:00: 
+  Authentication:
+2026-01-17 18:27:52 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 18:27:52 +04:00:     POST /api/auth/login       - User login
+2026-01-17 18:27:52 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 18:27:52 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 18:27:52 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 18:27:52 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 18:27:52 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 18:27:52 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 18:27:52 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 18:27:52 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 18:27:52 +04:00: 
+  User Profile:
+2026-01-17 18:27:52 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 18:27:52 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 18:27:52 +04:00: 
+  MasterCode:
+2026-01-17 18:27:52 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 18:27:52 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 18:27:52 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 18:27:52 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 18:27:52 +04:00: 
+  TrustCode:
+2026-01-17 18:27:52 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 18:27:52 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 18:27:52 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 18:27:52 +04:00: 
+  HSM/Crypto:
+2026-01-17 18:27:52 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 18:27:52 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 18:27:52 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 18:27:52 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 18:27:52 +04:00: ============================================================
+
+2026-01-17 18:27:52 +04:00: Redis connected
+2026-01-17 18:27:52 +04:00: Redis connection closed
+2026-01-17 18:27:52 +04:00: Redis connected
+2026-01-17 18:27:52 +04:00: Redis connection closed
+2026-01-17 18:27:53 +04:00: Redis connected
+2026-01-17 18:27:53 +04:00: Redis connection closed
+2026-01-17 18:27:53 +04:00: Redis connected
+2026-01-17 18:27:53 +04:00: Redis connection closed
+2026-01-17 18:27:55 +04:00: New database client connected
+2026-01-17 18:27:55 +04:00: Query executed: {
+  text: 'SELECT NOW() as time, current_database() as database',
+  duration: 76,
+  rows: 1
+}
+2026-01-17 18:27:55 +04:00: GET /health - 200 (78ms)
+2026-01-17 18:41:12 +04:00: 
+Shutting down gracefully...
+2026-01-17 19:24:39 +04:00: Database config - DB_HOST: db.pocket.one
+2026-01-17 19:24:39 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+2026-01-17 19:24:39 +04:00: Database: SSL enabled
+2026-01-17 19:24:39 +04:00: 
+============================================================
+2026-01-17 19:24:39 +04:00:   myID.africa Backend Service
+2026-01-17 19:24:39 +04:00: ============================================================
+2026-01-17 19:24:39 +04:00:   Port: 6321
+2026-01-17 19:24:39 +04:00:   Environment: development
+2026-01-17 19:24:39 +04:00: 
+  HSM Configuration:
+2026-01-17 19:24:39 +04:00:     Host: 172.27.127.129
+2026-01-17 19:24:39 +04:00:     Slot: 0
+2026-01-17 19:24:39 +04:00:     Label: pocketOne_CA
+2026-01-17 19:24:39 +04:00: 
+  Available Endpoints:
+2026-01-17 19:24:39 +04:00:   ────────────────────────────────────────────────────────
+2026-01-17 19:24:39 +04:00:   Health:
+2026-01-17 19:24:39 +04:00:     GET  /health               - Basic health check
+2026-01-17 19:24:39 +04:00:     GET  /health/detailed      - Detailed health (API key)
+2026-01-17 19:24:39 +04:00: 
+  Authentication:
+2026-01-17 19:24:39 +04:00:     POST /api/auth/register    - User registration
+2026-01-17 19:24:39 +04:00:     POST /api/auth/login       - User login
+2026-01-17 19:24:39 +04:00:     POST /api/auth/logout      - User logout
+2026-01-17 19:24:39 +04:00:     POST /api/auth/refresh     - Refresh JWT token
+2026-01-17 19:24:39 +04:00: 
+  WebAuthn Passkeys:
+2026-01-17 19:24:39 +04:00:     POST /api/auth/passkey/register/options
+2026-01-17 19:24:39 +04:00:     POST /api/auth/passkey/register/verify
+2026-01-17 19:24:39 +04:00:     POST /api/auth/passkey/authenticate/options
+2026-01-17 19:24:39 +04:00:     POST /api/auth/passkey/authenticate/verify
+2026-01-17 19:24:39 +04:00:     GET  /api/auth/passkey/credentials
+2026-01-17 19:24:39 +04:00: 
+  User Profile:
+2026-01-17 19:24:39 +04:00:     GET  /api/user/profile     - Get user profile
+2026-01-17 19:24:39 +04:00:     PUT  /api/user/profile     - Update profile
+2026-01-17 19:24:39 +04:00: 
+  MasterCode:
+2026-01-17 19:24:39 +04:00:     POST /api/mastercode/generate    - Generate MasterCodes
+2026-01-17 19:24:39 +04:00:     POST /api/mastercode/assign      - Assign to user
+2026-01-17 19:24:39 +04:00:     POST /api/mastercode/verify      - Verify MasterCode
+2026-01-17 19:24:39 +04:00:     GET  /api/mastercode/pool/status - Pool status
+2026-01-17 19:24:39 +04:00: 
+  TrustCode:
+2026-01-17 19:24:39 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+2026-01-17 19:24:39 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+2026-01-17 19:24:39 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+2026-01-17 19:24:39 +04:00: 
+  mDL (ISO 18013-5):
+2026-01-17 19:24:39 +04:00:     POST /api/mdl/issue              - Issue mDL credential
+2026-01-17 19:24:39 +04:00:     GET  /api/mdl/:id                - Get mDL credential
+2026-01-17 19:24:39 +04:00:     POST /api/mdl/present            - Generate presentation
+2026-01-17 19:24:39 +04:00:     POST /api/mdl/verify             - Verify presentation
+2026-01-17 19:24:39 +04:00:     GET  /api/mdl/engagement         - Device engagement QR
+2026-01-17 19:24:39 +04:00:     GET  /api/mdl/list               - List user's mDLs
+2026-01-17 19:24:39 +04:00: 
+  Consent Management:
+2026-01-17 19:24:39 +04:00:     POST /api/consent/request        - RP requests consent
+2026-01-17 19:24:39 +04:00:     POST /api/consent/approve        - User approves consent
+2026-01-17 19:24:39 +04:00:     GET  /api/consent/history        - User consent history
+2026-01-17 19:24:39 +04:00:     DELETE /api/consent/:id          - Revoke consent
+2026-01-17 19:24:39 +04:00: 
+  Unified Credentials (Phase 3):
+2026-01-17 19:24:39 +04:00:     POST /api/credentials/issue     - Issue credential (mDL/PID/DTC/VC)
+2026-01-17 19:24:39 +04:00:     GET  /api/credentials           - List user credentials
+2026-01-17 19:24:39 +04:00:     GET  /api/credentials/:id       - Get credential details
+2026-01-17 19:24:39 +04:00:     POST /api/credentials/:id/present - Generate presentation
+2026-01-17 19:24:39 +04:00:     DELETE /api/credentials/:id     - Delete credential
+2026-01-17 19:24:39 +04:00:     POST /api/credentials/verify    - Verify credential
+2026-01-17 19:24:39 +04:00:     POST /api/credentials/dtc/authenticate - DTC chip auth
+2026-01-17 19:24:39 +04:00:     POST /api/credentials/pid/age-verify   - Age verification
+2026-01-17 19:24:39 +04:00: 
+  QES (Qualified Electronic Signatures):
+2026-01-17 19:24:39 +04:00:     POST /api/qes/sign              - Sign document with QES
+2026-01-17 19:24:39 +04:00:     POST /api/qes/verify            - Verify QES signature
+2026-01-17 19:24:39 +04:00:     GET  /api/qes/certificate       - Get user's QES certificate
+2026-01-17 19:24:39 +04:00:     POST /api/qes/request-certificate - Request QES certificate
+2026-01-17 19:24:39 +04:00:     GET  /api/qes/signatures        - List user's signatures
+2026-01-17 19:24:39 +04:00:     GET  /api/qes/audit-log         - Get QES audit log
+2026-01-17 19:24:39 +04:00: 
+  HSM/Crypto:
+2026-01-17 19:24:39 +04:00:     POST /api/crypto/keygen         - Generate key pair
+2026-01-17 19:24:39 +04:00:     POST /api/crypto/sign           - Sign data
+2026-01-17 19:24:39 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+2026-01-17 19:24:39 +04:00:     POST /api/crypto/qes/sign       - QES signing
+2026-01-17 19:24:39 +04:00: ============================================================
+
+2026-01-17 19:24:39 +04:00: Redis connected
+2026-01-17 19:24:39 +04:00: Redis connection closed
+2026-01-17 19:24:39 +04:00: Redis connected
+2026-01-17 19:24:39 +04:00: Redis connection closed
+2026-01-17 19:24:40 +04:00: Redis connected
+2026-01-17 19:24:40 +04:00: Redis connection closed
+2026-01-17 19:24:40 +04:00: Redis connected
+2026-01-17 19:24:40 +04:00: Redis connection closed
+2026-01-17 19:24:43 +04:00: New database client connected
+2026-01-17 19:24:43 +04:00: Query executed: {
+  text: 'SELECT NOW() as time, current_database() as database',
+  duration: 74,
+  rows: 1
+}
+2026-01-17 19:24:43 +04:00: GET /health - 200 (76ms)
