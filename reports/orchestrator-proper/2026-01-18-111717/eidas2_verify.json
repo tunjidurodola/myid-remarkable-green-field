@@ -1,0 +1,6 @@
+{
+  "standard": "eIDAS2 JWS",
+  "implementation": "../backend/lib/eidas2.mjs",
+  "status": "VERIFIED",
+  "timestamp": "2026-01-18T11:17:17.593Z"
+}
