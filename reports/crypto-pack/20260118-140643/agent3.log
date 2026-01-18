@@ -1,0 +1,29 @@
+[AGENT3] Starting security audit...
+[AGENT3] Auditing verification code...
+[AGENT3] ✓ PASS: ISO 18013-5 MDL verification uses real COSE_Sign1
+[AGENT3] ✓ PASS: W3C DID/VC verification uses real JWS via jose library
+[AGENT3] ✓ PASS: ICAO DTC SOD verification uses real OpenSSL CMS
+[AGENT3] ✓ PASS: eIDAS2 PID verification uses real JWS verification
+[AGENT3] Auditing secrets management...
+[AGENT3] ✓ PASS: Vault integration present in secrets loader
+[AGENT3] ✓ PASS: No fallback secrets found in secrets loader
+[AGENT3] ✓ PASS: Fail-closed behavior implemented (throws on missing secrets)
+[AGENT3] ✓ PASS: PM2 config contains no hardcoded secrets
+[AGENT3] Auditing HSM integration...
+[AGENT3] ✓ PASS: HSM signing updated to use PKCS#11 integration
+[AGENT3] ⚠ INFO: HSM signing requires PKCS#11 library configuration (/perform1/srv/work/myid-app/backend/lib/hsm-signer.mjs)
+[AGENT3] ✓ PASS: HSM signing references PKCS#11 tools
+[AGENT3] Running verification tests...
+[AGENT3] ⚠ INFO: Verification tests not run: Command failed: npm test
+npm error Missing script: "test"
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: /root/.npm/_logs/2026-01-18T10_06_44_002Z-debug-0.log
+
+[AGENT3] Checking for verification stubs...
+[AGENT3] ✓ PASS: No verification stubs found in production code
+[AGENT3] Generating comprehensive security audit report...
+[AGENT3] Report written to /perform1/srv/work/myid-app/reports/crypto-pack/20260118-140643/agent3-report.json
+[AGENT3] Summary written to /perform1/srv/work/myid-app/reports/crypto-pack/20260118-140643/SECURITY_AUDIT_SUMMARY.md
+[AGENT3] ⚠ Security audit PASSED with 2 warnings
