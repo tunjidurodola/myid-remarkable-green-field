@@ -112,25 +112,25 @@ async function validateAPIKeyWithVaultRotation(providedKey) {
   // Check previous key (N-1) with 24h grace period
   if (keys.previousKey && constantTimeCompare(providedKey, keys.previousKey)) {
     const gracePeriodMs = 24 * 60 * 60 * 1000; // 24 hours
-    const createdTime = keys.previousMetadata?.created_time
-      ? new Date(keys.previousMetadata.created_time).getTime()
+    const rotatedTime = keys.rotatedAt
+      ? new Date(keys.rotatedAt).getTime()
       : 0;
     const now = Date.now();
 
-    if (createdTime && (now - createdTime <= gracePeriodMs)) {
+    if (rotatedTime && (now - rotatedTime <= gracePeriodMs)) {
       return {
         valid: true,
         deprecated: true,
-        version: keys.previousVersion,
-        graceExpiry: new Date(createdTime + gracePeriodMs).toISOString()
+        version: 'N-1',
+        graceExpiry: new Date(rotatedTime + gracePeriodMs).toISOString()
       };
     } else {
-      // Grace period expired or no created_time
+      // Grace period expired or no rotated_at timestamp
       return {
         valid: false,
         deprecated: true,
         expired: true,
-        version: keys.previousVersion
+        version: 'N-1'
       };
     }
   }

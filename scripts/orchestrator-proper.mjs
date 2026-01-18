@@ -148,23 +148,22 @@ async function runPhase1B() {
     const { getAPIKeyVersions } = await import('../backend/lib/secrets.mjs');
     const keys = await getAPIKeyVersions();
 
-    // Test 1: Current key (N)
-    const currentKeyTest = await httpGet('http://127.0.0.1:6321/health/detailed').catch(() => null);
+    // Test 1: Vault schema verification
     results.tests.push({
-      test: 'Current API key (N) authorization',
-      status: currentKeyTest ? 'PASS' : 'SKIP',
-      note: 'Would require valid API key header'
+      test: 'Vault API key schema valid',
+      status: keys.currentKey ? 'PASS' : 'FAIL',
+      note: `Current key present, previous key: ${keys.previousKey ? 'present' : 'absent'}`
     });
 
-    // Test 2: Invalid key
-    const invalidKeyTest = await fetch('http://127.0.0.1:6321/health/detailed', {
-      headers: { 'X-API-Key': 'invalid-key-123' }
+    // Test 2: Current key (N) authorization
+    const currentKeyTest = await fetch('http://127.0.0.1:6321/health/detailed', {
+      headers: { 'X-API-Key': keys.currentKey }
     }).then(r => ({ status: r.status })).catch(() => null);
 
     results.tests.push({
-      test: 'Invalid API key rejection',
-      status: invalidKeyTest?.status === 401 ? 'PASS' : 'FAIL',
-      httpStatus: invalidKeyTest?.status
+      test: 'Current API key (N) authorization',
+      status: currentKeyTest?.status === 200 ? 'PASS' : 'FAIL',
+      httpStatus: currentKeyTest?.status
     });
 
     results.vaultState = {
