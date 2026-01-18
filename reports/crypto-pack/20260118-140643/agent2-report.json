@@ -1,0 +1,28 @@
+{
+  "agent": "agent2-vault-hardening",
+  "timestamp": "2026-01-18T10:06:43.937Z",
+  "summary": {
+    "changes": 0,
+    "errors": 0,
+    "warnings": 0,
+    "hardcodedSecretsFound": 0
+  },
+  "changes": [],
+  "errors": [],
+  "warnings": [],
+  "hardcodedSecrets": [],
+  "vaultPaths": {
+    "pwa_jwt": "kv-v2/myid/pwa/jwt",
+    "pwa_api": "kv-v2/myid/pwa/api",
+    "hsm_jwt": "kv-v2/myid/hsm/jwt",
+    "hsm_api": "kv-v2/myid/hsm/api"
+  },
+  "recommendations": [
+    "Ensure VAULT_ADDR and VAULT_TOKEN are set in production environment",
+    "Rotate API keys using N vs N-1 pattern with API_KEY_PREVIOUS and API_KEY_ROTATION_TIMESTAMP",
+    "Monitor for X-API-Key-Deprecated headers in production logs",
+    "Remove any hardcoded secrets from PM2 ecosystem.config.cjs",
+    "Verify all 4 Vault paths contain required keys (jwt_secret, api_key)",
+    "Set API_KEY_ROTATION_TIMESTAMP when rotating keys to enable 24h grace period"
+  ]
+}
