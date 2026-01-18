@@ -177,22 +177,38 @@ export class W3CDID {
 
   /**
    * Verify Verifiable Credential
+   *
+   * NOTE: Real cryptographic verification MUST be done server-side
+   * using backend/lib/verifiers.mjs DIDVCVerifier.verifyCredential()
+   *
+   * This client-side method performs basic structural validation only.
+   * DO NOT rely on this for security-critical decisions.
    */
   static async verifyCredential(credential: VerifiableCredential): Promise<boolean> {
+    // Basic structural validation only - not cryptographic verification
+    // Real verification happens server-side with DID resolution and JWS verification
+
     // Check expiration
     if (credential.expirationDate) {
       const expiry = new Date(credential.expirationDate);
       if (expiry < new Date()) return false;
     }
 
-    // In production, verify the proof signature
-    if (!credential.proof.jws && !credential.proof.proofValue) {
+    // Check that proof structure exists
+    if (!credential.proof?.jws && !credential.proof?.proofValue) {
       return false;
     }
 
-    // Verify issuer DID is resolvable
-    // This would resolve the DID and verify the signature
+    // Check that issuer is present
+    const issuerDID = typeof credential.issuer === 'string'
+      ? credential.issuer
+      : credential.issuer?.id;
 
+    if (!issuerDID || !issuerDID.startsWith('did:')) {
+      return false;
+    }
+
+    // Structure is valid - actual cryptographic verification must be done server-side
     return true;
   }
 

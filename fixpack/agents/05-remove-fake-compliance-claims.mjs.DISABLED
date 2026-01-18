@@ -1,0 +1,12 @@
+import { execCmd } from "../lib/exec.mjs";
+import { fail, ok, writeText } from "../lib/report.mjs";
+
+const cmd = "grep -RIn --exclude-dir=node_modules --exclude-dir=.git -E 'zero[- ]knowledge|ZKP|proof of knowledge' /perform1/srv/work/myid-app /perform1/srv/work/www/html/myid/pwa-app 2>/dev/null || true";
+const r = await execCmd("bash", ["-lc", cmd]);
+writeText("zkp-claims-findings.txt", r.out);
+
+if (r.out.trim()) {
+  fail("ZKP/zero-knowledge claims found. Replace wording with 'hash-based selective disclosure (non-ZKP)' and rerun.");
+}
+
+ok("No ZKP/zero-knowledge claims found in scanned code/docs.");
