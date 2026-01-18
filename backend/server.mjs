@@ -26,6 +26,10 @@ import qesRoutes from './routes/qes.mjs';
 // Import HSM modules for health checks
 import { hsmConnection } from './lib/hsm-signer.mjs';
 
+// Import HSM Vault and Tools modules for slot segmentation
+import { loadMyidHsmConfig, loadSlotPins } from './lib/hsm-vault.mjs';
+import { listSlots as hsmListSlots } from './lib/hsm-tools.mjs';
+
 const app = express();
 const PORT = process.env.PORT || 6321;
 
@@ -55,6 +59,9 @@ app.use((req, res, next) => {
 let _apiKeyCache = null;
 let _apiKeyCacheTime = 0;
 const API_KEY_CACHE_MS = 5 * 60 * 1000; // 5 minutes
+
+// HSM slot segmentation state (loaded at startup)
+let _hsmState = null;
 
 async function getAPIKeys() {
   const now = Date.now();
@@ -445,6 +452,37 @@ app.post('/api/crypto/qes/sign', authenticateAPIKey, async (req, res) => {
   }
 });
 
+// ==================== HSM READINESS ENDPOINT ====================
+
+/**
+ * HSM slot segmentation readiness check
+ * GET /api/hsm/readiness
+ * Protected by API key authentication
+ */
+app.get('/api/hsm/readiness', authenticateAPIKey, async (req, res) => {
+  if (!_hsmState) {
+    return res.status(503).json({
+      status: 'not_ready',
+      error: 'HSM state not initialized',
+      message: 'Server startup validation not completed'
+    });
+  }
+
+  res.json({
+    status: 'ok',
+    host: _hsmState.config.hsm_host,
+    enabled_slots: _hsmState.config.enabled_slots,
+    default_slot: _hsmState.config.default_slot,
+    tools: {
+      p11tool2_cmd: _hsmState.config.p11tool2_cmd,
+      csadm_cmd: _hsmState.config.csadm_cmd,
+      executable: true
+    },
+    slots_seen: _hsmState.slots_seen,
+    validation_timestamp: _hsmState.validated_at
+  });
+});
+
 // ==================== 404 HANDLER ====================
 
 app.use((req, res) => {
@@ -470,7 +508,96 @@ async function shutdown() {
 process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
 
+// ==================== HSM STARTUP VALIDATION ====================
+
+/**
+ * Validate HSM slot segmentation configuration at startup (fail-closed)
+ * - Loads config from Vault c3-hsm/myid-hsm/config
+ * - Validates enabled_slots contains default_slot
+ * - Verifies tool executables exist
+ * - Runs listSlots and verifies all enabled slots are present
+ * - Loads and caches slot PINs for enabled slots
+ * - Exits process if any validation fails
+ */
+async function validateHSMStartup() {
+  try {
+    console.log('\n[HSM] Starting slot segmentation validation...');
+
+    // Step 1: Load configuration from Vault
+    console.log('[HSM] Loading configuration from Vault: c3-hsm/myid-hsm/config');
+    const config = await loadMyidHsmConfig();
+    console.log(`[HSM] Config loaded: host=${config.hsm_host}, default_slot=${config.default_slot}`);
+    console.log(`[HSM] Enabled slots: ${config.enabled_slots.join(', ')}`);
+
+    // Step 2: Validate enabled_slots contains default_slot (already done in loadMyidHsmConfig)
+    console.log('[HSM] ✓ Validated default_slot is in enabled_slots');
+
+    // Step 3: Check tool executables exist
+    console.log('[HSM] Checking tool executables...');
+    const fs = await import('node:fs');
+    try {
+      fs.accessSync(config.p11tool2_cmd, fs.constants.X_OK);
+      console.log(`[HSM] ✓ ${config.p11tool2_cmd} is executable`);
+    } catch (err) {
+      throw new Error(`p11tool2-remote not executable: ${config.p11tool2_cmd}`);
+    }
+
+    try {
+      fs.accessSync(config.csadm_cmd, fs.constants.X_OK);
+      console.log(`[HSM] ✓ ${config.csadm_cmd} is executable`);
+    } catch (err) {
+      throw new Error(`csadm-remote not executable: ${config.csadm_cmd}`);
+    }
+
+    // Step 4: Run listSlots and verify all enabled slots are present
+    console.log('[HSM] Listing HSM slots...');
+    const slots_seen = await hsmListSlots(config.p11tool2_cmd);
+    console.log(`[HSM] Slots detected: ${slots_seen.join(', ')}`);
+
+    // Verify all enabled slots are present
+    const missing_slots = config.enabled_slots.filter(slot => !slots_seen.includes(slot));
+    if (missing_slots.length > 0) {
+      throw new Error(
+        `Enabled slots not found in HSM: ${missing_slots.join(', ')}. ` +
+        `Available: ${slots_seen.join(', ')}`
+      );
+    }
+    console.log('[HSM] ✓ All enabled slots are present in HSM');
+
+    // Step 5: Load and cache slot PINs for enabled slots
+    console.log('[HSM] Loading slot PINs from Vault...');
+    const slotPins = {};
+    for (const slot of config.enabled_slots) {
+      const pins = await loadSlotPins(slot);
+      slotPins[slot] = pins;
+      // Log without PIN values
+      const km_status = pins.km_pin ? 'present' : 'not set';
+      console.log(`[HSM] ✓ Loaded PINs for slot ${slot} (so_pin, usr_pin, km_pin: ${km_status})`);
+    }
+
+    // Step 6: Cache the validated state
+    _hsmState = {
+      config,
+      slotPins,
+      slots_seen,
+      validated_at: new Date().toISOString()
+    };
+
+    console.log('[HSM] ✓ Slot segmentation validation complete');
+    console.log(`[HSM] Ready to serve with ${config.enabled_slots.length} slot(s)\n`);
+
+    return true;
+  } catch (error) {
+    console.error('\n[HSM] FATAL: Startup validation failed:', error.message);
+    console.error('[HSM] Exiting process (fail-closed)\n');
+    process.exit(1);
+  }
+}
+
 // ==================== START SERVER ====================
+
+// Run HSM startup validation before listening
+await validateHSMStartup();
 
 app.listen(PORT, () => {
   console.log(`\n${'='.repeat(60)}`);
@@ -487,6 +614,7 @@ app.listen(PORT, () => {
   console.log(`  Health:`);
   console.log(`    GET  /health               - Basic health check`);
   console.log(`    GET  /health/detailed      - Detailed health (API key)`);
+  console.log(`    GET  /api/hsm/readiness    - HSM slot readiness (API key)`);
   console.log(`\n  Authentication:`);
   console.log(`    POST /api/auth/register    - User registration`);
   console.log(`    POST /api/auth/login       - User login`);
