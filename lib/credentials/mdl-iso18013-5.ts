@@ -140,10 +140,30 @@ export class MDLCredential {
 
   /**
    * Verify mDL signature
+   *
+   * NOTE: Real cryptographic verification MUST be done server-side
+   * using backend/lib/verifiers.mjs MDLVerifier.verifyIssuerAuth()
+   *
+   * This client-side method performs basic structural validation only.
+   * DO NOT rely on this for security-critical decisions.
    */
   static verify(doc: MDLDocument): boolean {
-    // In production, verify the issuerAuth signature against the certificate
-    return !!doc.issuerAuth.signature && !!doc.issuerAuth.certificate;
+    // Basic structural validation only - not cryptographic verification
+    // Real verification happens server-side with COSE_Sign1 verification
+    if (!doc?.issuerAuth?.signature || !doc?.issuerAuth?.certificate) {
+      return false;
+    }
+
+    // Check that signature and certificate are properly formatted
+    try {
+      Buffer.from(doc.issuerAuth.signature, 'base64');
+      if (!doc.issuerAuth.certificate.includes('BEGIN CERTIFICATE')) {
+        return false;
+      }
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   /**
@@ -159,7 +179,7 @@ export class MDLCredential {
 
     const isOver = age >= ageThreshold;
 
-    // Create zero-knowledge proof (simplified)
+    // Create hash-based selective disclosure (non-ZKP)
     const proof = Blake3Crypto.hash(
       `${doc.namespaces['org.iso.18013.5.1'].birth_date}:${ageThreshold}:${isOver}`
     );

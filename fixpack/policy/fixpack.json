@@ -1,0 +1,34 @@
+{
+  "node_reference": "v20.11.0",
+  "vault": {
+    "kv_mount": "kv-v2",
+    "paths": {
+      "pwa_jwt": "myid/pwa/jwt",
+      "pwa_api": "myid/pwa/api",
+      "hsm_jwt": "myid/hsm/jwt",
+      "hsm_api": "myid/hsm/api"
+    },
+    "keys": {
+      "jwt_secret": "jwt_secret",
+      "api_key": "api_key"
+    }
+  },
+  "targets": [
+    "/perform1/srv/work/myid-app",
+    "/perform1/srv/work/www/html/myid/pwa-app"
+  ],
+  "ban_patterns": [
+    "JWT_SECRET\\s*[:=]",
+    "API_KEY\\s*[:=]",
+    "myid-jwt-secret-key",
+    "myid-api-key"
+  ],
+  "backend": {
+    "path": "/perform1/srv/work/myid-app/backend"
+  },
+  "crypto": {
+    "require_real_verification": true,
+    "min_credential_paths": 1,
+    "disallow_fake_zkp_claims": true
+  }
+}

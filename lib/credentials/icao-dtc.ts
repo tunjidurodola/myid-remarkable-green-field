@@ -181,9 +181,15 @@ export class ICAODTCCredential {
 
   /**
    * Verify DTC integrity using SOD
+   *
+   * NOTE: Real cryptographic verification MUST be done server-side
+   * using backend/lib/verifiers.mjs ICAODTCVerifier.verifySOD()
+   *
+   * This client-side method performs basic structural validation only.
+   * DO NOT rely on this for security-critical decisions.
    */
   static verify(doc: DTCDocument): boolean {
-    // Verify all data group hashes
+    // Basic structural validation - verify data group hashes locally
     for (const [key, dataGroup] of Object.entries(doc.dataGroups)) {
       const expectedHash = doc.securityObject.dataGroupHashes[key];
       if (dataGroup.dataGroupHash !== expectedHash) {
@@ -191,8 +197,21 @@ export class ICAODTCCredential {
       }
     }
 
-    // In production, verify the SOD signature against the certificate
-    return !!doc.securityObject.signature && !!doc.securityObject.certificate;
+    // Check SOD signature and certificate structure
+    // Real CMS signature verification happens server-side via OpenSSL
+    if (!doc.securityObject?.signature || !doc.securityObject?.certificate) {
+      return false;
+    }
+
+    try {
+      Buffer.from(doc.securityObject.signature, 'base64');
+      if (!doc.securityObject.certificate.includes('BEGIN CERTIFICATE')) {
+        return false;
+      }
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   /**
