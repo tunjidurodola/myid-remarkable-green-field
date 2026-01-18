@@ -1,0 +1,11 @@
+┌────┬───────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name                  │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼───────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 3  │ ecosystem.myid.nv2    │ myid-check  │ 2.0.0   │ fork    │ 917612   │ 17h    │ 0    │ online    │ 0%       │ 52.3mb   │ root     │ disabled │
+│ 0  │ ecosystem.srvwork     │ default     │ N/A     │ fork    │ 917592   │ 17h    │ 0    │ online    │ 0%       │ 56.4mb   │ root     │ disabled │
+│ 6  │ myid-hsm              │ default     │ 1.0.0   │ cluster │ 1644171  │ 4h     │ 1    │ online    │ 0%       │ 79.8mb   │ root     │ disabled │
+│ 5  │ myid-ngrok            │ default     │ N/A     │ fork    │ 917619   │ 17h    │ 0    │ online    │ 0%       │ 23.9mb   │ root     │ disabled │
+│ 4  │ myid-pwa              │ default     │ 14.2.35 │ cluster │ 917614   │ 17h    │ 0    │ online    │ 0%       │ 353.2mb  │ root     │ disabled │
+│ 1  │ myid-pwa-server       │ default     │ 1.0.0   │ cluster │ 1644133  │ 4h     │ 4    │ online    │ 0%       │ 50.0mb   │ root     │ disabled │
+│ 2  │ myid-pwa-server       │ default     │ 1.0.0   │ cluster │ 1644145  │ 4h     │ 4    │ online    │ 0%       │ 55.0mb   │ root     │ disabled │
+└────┴───────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘

@@ -1,0 +1,34 @@
+{
+  "test": "Vault kv-v2 Versioned API Key Rotation",
+  "timestamp": "2026-01-18T14:38:40Z",
+  "implementation": {
+    "file": "backend/lib/secrets.mjs",
+    "function": "getAPIKeyVersions()",
+    "mechanism": "Reads Vault metadata to get current_version (N), then reads version N and N-1 data with created_time metadata"
+  },
+  "validation": {
+    "file": "backend/server.mjs",
+    "function": "validateAPIKeyWithVaultRotation()",
+    "grace_period": "24 hours (86400000 ms)",
+    "comparison": "constant-time using crypto.timingSafeEqual()",
+    "headers_on_deprecated": [
+      "X-API-Key-Deprecated: true",
+      "X-Deprecated-Key-Version: <N-1>",
+      "Warning: 299 - API key deprecated. Grace period ends <ISO timestamp>"
+    ]
+  },
+  "workflow": {
+    "step1": "Read /v1/kv-v2/metadata/myid/hsm/api → get current_version = N",
+    "step2": "Read /v1/kv-v2/data/myid/hsm/api?version=N → get current API key",
+    "step3": "Read /v1/kv-v2/data/myid/hsm/api?version=N-1 → get previous API key",
+    "step4": "Compare provided key using constant-time",
+    "step5": "If matches N-1 and created_time within 24h → accept with deprecation headers"
+  },
+  "no_env_vars": {
+    "API_KEY": "NOT USED - reads from Vault",
+    "API_KEY_PREVIOUS": "NOT USED - reads from Vault version N-1",
+    "API_KEY_ROTATION_TIMESTAMP": "NOT USED - uses Vault metadata.created_time"
+  },
+  "proof": "All API key validation now reads directly from Vault kv-v2 versioned secrets. No environment variables for secret values. Grace period calculated from Vault metadata.created_time.",
+  "status": "IMPLEMENTED"
+}
