@@ -6,6 +6,7 @@
  */
 
 import crypto from 'crypto';
+import { jwtVerify, importJWK } from 'jose';
 
 // eIDAS2 PID Namespace
 export const EIDAS2_NAMESPACE = 'eu.europa.ec.eudi.pid.1';
@@ -393,21 +394,43 @@ export class EiDAS2PID {
  */
 export class PIDVerifier {
   /**
-   * Verify PID signature (placeholder - real implementation uses HSM)
+   * Verify PID signature using JWS (eIDAS2 standard format)
+   * @param {string} jws - JWT/JWS token containing the PID credential
+   * @param {Object} publicKeyJWK - Public key in JWK format
+   * @returns {Promise<Object>} - Verification result with payload if valid
    */
-  static async verifySignature(pid, publicKey) {
-    if (!pid.security?.issuerSignature) {
-      return { verified: false, error: 'No signature present' };
+  static async verifySignature(jws, publicKeyJWK) {
+    // Fail closed: require both JWS and public key
+    if (!jws || !publicKeyJWK) {
+      console.error('[eIDAS2] Verification failed: missing JWS or public key');
+      return { verified: false, error: 'Missing JWS or public key' };
     }
 
-    // In production, verify using the issuer's public key
-    // For now, return structure for HSM verification
-    return {
-      verified: true,
-      algorithm: pid.security.signatureAlgorithm,
-      issuer: pid.issuingAuthority,
-      signedAt: pid.validity?.signed,
-    };
+    try {
+      // Import the public key from JWK format
+      const publicKey = await importJWK(publicKeyJWK, publicKeyJWK.alg || 'ES256');
+
+      // Verify the JWS signature using jose library
+      const { payload, protectedHeader } = await jwtVerify(jws, publicKey, {
+        algorithms: [publicKeyJWK.alg || 'ES256', 'ES384', 'ES512', 'RS256']
+      });
+
+      // Return verification result with decoded payload
+      return {
+        verified: true,
+        payload,
+        algorithm: protectedHeader.alg,
+        issuer: payload.iss,
+        signedAt: payload.iat ? new Date(payload.iat * 1000).toISOString() : null,
+      };
+    } catch (error) {
+      // Fail closed: any verification error = invalid signature
+      console.error('[eIDAS2] Signature verification failed:', error.message);
+      return {
+        verified: false,
+        error: error.message
+      };
+    }
   }
 
   /**

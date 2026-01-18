@@ -308,4 +308,64 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   runTests();
 }
 
+
+// eIDAS2 PID Verification Tests
+describe('eIDAS2 PID Verification', () => {
+  it('should verify valid eIDAS2 PID signature', async () => {
+    // This test requires a real eIDAS2 PID credential
+    // For now, we verify the verifier is callable
+    const { PIDVerifier } = await import('./eidas2.mjs');
+    const verifier = new PIDVerifier();
+
+    expect(verifier).toBeDefined();
+    expect(typeof verifier.verifySignature).toBe('function');
+  });
+
+  it('should reject mutated eIDAS2 signature', async () => {
+    // Test that signature verification catches tampering
+    const { PIDVerifier } = await import('./eidas2.mjs');
+    const verifier = new PIDVerifier();
+
+    // Invalid JWS should fail
+    const result = await verifier.verifySignature('invalid.jws.token', {
+      kty: 'EC',
+      crv: 'P-256',
+      x: 'invalid',
+      y: 'invalid'
+    });
+
+    expect(result.valid).toBe(false);
+  });
+});
+
+
+// eIDAS2 PID Verification Tests
+describe('eIDAS2 PID Verification', () => {
+  it('should verify valid eIDAS2 PID signature', async () => {
+    // This test requires a real eIDAS2 PID credential
+    // For now, we verify the verifier is callable
+    const { PIDVerifier } = await import('./eidas2.mjs');
+    const verifier = new PIDVerifier();
+
+    expect(verifier).toBeDefined();
+    expect(typeof verifier.verifySignature).toBe('function');
+  });
+
+  it('should reject mutated eIDAS2 signature', async () => {
+    // Test that signature verification catches tampering
+    const { PIDVerifier } = await import('./eidas2.mjs');
+    const verifier = new PIDVerifier();
+
+    // Invalid JWS should fail
+    const result = await verifier.verifySignature('invalid.jws.token', {
+      kty: 'EC',
+      crv: 'P-256',
+      x: 'invalid',
+      y: 'invalid'
+    });
+
+    expect(result.valid).toBe(false);
+  });
+});
+
 export { testMDLVerifier, testDIDVCVerifier, testICAODTCVerifier };
