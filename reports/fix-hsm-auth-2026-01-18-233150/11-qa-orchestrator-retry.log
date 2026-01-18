@@ -1,0 +1,30 @@
+
+> myid-africa-pwa@1.0.0 qa:hsm-profile
+> node scripts/qa-hsm-profile.mjs
+
+Running QA Gate for HSM Operational Profile...
+
+HSM Profile QA Gate: PASSED
+╔═══════════════════════════════════════════════════════════╗
+║   Orchestrator Proper - QA/Compliance Gate Runner        ║
+║   myID.africa Green Acceptance Testing                   ║
+╚═══════════════════════════════════════════════════════════╝
+
+[2026-01-18T19:54:28.277Z] [MAIN] [INFO] Report directory: /perform1/srv/work/myid-app/reports/orchestrator-proper/2026-01-18-195428
+[2026-01-18T19:54:28.277Z] [PHASE0] [INFO] Starting prechecks
+[2026-01-18T19:54:28.326Z] [PHASE0] [INFO] Completed: PASS
+[2026-01-18T19:54:28.326Z] [PHASE1A] [INFO] Running runtime secrets hygiene scan
+[2026-01-18T19:54:28.336Z] [PHASE1A] [INFO] Completed: PASS
+[2026-01-18T19:54:28.337Z] [PHASE1B] [INFO] Testing Vault API key rotation (N/N-1)
+[2026-01-18T19:54:28.404Z] [PHASE1B] [INFO] Completed: ERROR
+[2026-01-18T19:54:28.404Z] [PHASE1C] [INFO] Verifying HSM signing path
+[2026-01-18T19:54:28.405Z] [PHASE1C] [INFO] Completed: PASS
+[2026-01-18T19:54:28.405Z] [PHASE2] [INFO] Running crypto/compliance verification gates
+[2026-01-18T19:54:28.406Z] [PHASE2] [INFO] Completed: PASS
+
+╔═══════════════════════════════════════════════════════════╗
+║   Overall Status: PASS                                       ║
+╚═══════════════════════════════════════════════════════════╝
+
+Evidence: /perform1/srv/work/myid-app/reports/orchestrator-proper/2026-01-18-195428
+

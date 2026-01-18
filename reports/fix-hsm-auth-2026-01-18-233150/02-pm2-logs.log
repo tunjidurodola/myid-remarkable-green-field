@@ -1,0 +1,105 @@
+[TAILING] Tailing last 50 lines for [myid-hsm] process (change the value with --lines option)
+/perform1/srv/work/myid-app/backend/logs/hsm-out.log last 50 lines:
+6|myid-hsm |   TrustCode:
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/trustcode/issue        - Issue TrustCode
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/trustcode/verify       - Verify TrustCode
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/trustcode/:code        - Get TrustCode
+6|myid-hsm | 2026-01-18 21:27:43 +04:00: 
+6|myid-hsm |   mDL (ISO 18013-5):
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/mdl/issue              - Issue mDL credential
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/mdl/:id                - Get mDL credential
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/mdl/present            - Generate presentation
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/mdl/verify             - Verify presentation
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/mdl/engagement         - Device engagement QR
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/mdl/list               - List user's mDLs
+6|myid-hsm | 2026-01-18 21:27:43 +04:00: 
+6|myid-hsm |   Consent Management:
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/consent/request        - RP requests consent
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/consent/approve        - User approves consent
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/consent/history        - User consent history
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     DELETE /api/consent/:id          - Revoke consent
+6|myid-hsm | 2026-01-18 21:27:43 +04:00: 
+6|myid-hsm |   Unified Credentials (Phase 3):
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/credentials/issue     - Issue credential (mDL/PID/DTC/VC)
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/credentials           - List user credentials
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/credentials/:id       - Get credential details
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/credentials/:id/present - Generate presentation
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     DELETE /api/credentials/:id     - Delete credential
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/credentials/verify    - Verify credential
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/credentials/dtc/authenticate - DTC chip auth
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/credentials/pid/age-verify   - Age verification
+6|myid-hsm | 2026-01-18 21:27:43 +04:00: 
+6|myid-hsm |   QES (Qualified Electronic Signatures):
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/qes/sign              - Sign document with QES
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/qes/verify            - Verify QES signature
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/qes/certificate       - Get user's QES certificate
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/qes/request-certificate - Request QES certificate
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/qes/signatures        - List user's signatures
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/qes/audit-log         - Get QES audit log
+6|myid-hsm | 2026-01-18 21:27:43 +04:00: 
+6|myid-hsm |   HSM/Crypto:
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/keygen         - Generate key pair
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/sign           - Sign data
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/qes/sign       - QES signing
+6|myid-hsm | 2026-01-18 21:27:43 +04:00: ============================================================
+6|myid-hsm | 
+6|myid-hsm | 2026-01-18 21:51:41 +04:00: GET /api/hsm/readiness - 401 (66ms)
+6|myid-hsm | 2026-01-18 21:51:55 +04:00: GET /api/hsm/readiness - 401 (1ms)
+6|myid-hsm | 2026-01-18 22:40:14 +04:00: 
+6|myid-hsm | Shutting down gracefully...
+6|myid-hsm | 2026-01-18 22:40:14 +04:00: Database pool closed
+6|myid-hsm | 2026-01-18 22:40:14 +04:00: Redis connection closed
+
+/perform1/srv/work/myid-app/backend/logs/hsm-error.log last 50 lines:
+6|myid-hsm | 2026-01-18 15:11:11 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 15:16:40 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 15:16:41 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 15:17:17 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 15:17:17 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 15:34:09 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 15:34:09 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 16:55:28 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 16:55:28 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 16:58:27 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 16:58:27 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 19:06:28 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 19:06:29 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 19:07:56 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 19:07:56 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 19:38:29 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 19:38:29 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 21:26:33 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 21:26:33 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 21:26:40 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 21:26:40 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 21:51:41 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | 2026-01-18 21:51:55 +04:00: [AUTH] Invalid API key provided
+6|myid-hsm | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+6|myid-hsm | file:///perform1/srv/work/myid-app/backend/routes/credentials.mjs:21
+6|myid-hsm | import { hsmSigner, certificateManager } from '../lib/hsm-signer.mjs';
+6|myid-hsm |                     ^^^^^^^^^^^^^^^^^^
+6|myid-hsm | SyntaxError: The requested module '../lib/hsm-signer.mjs' does not provide an export named 'certificateManager'
+6|myid-hsm |     at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+6|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+6|myid-hsm |     at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+6|myid-hsm |     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+6|myid-hsm | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+6|myid-hsm | file:///perform1/srv/work/myid-app/backend/routes/qes.mjs:18
+6|myid-hsm |   QES_FORMATS,
+6|myid-hsm |   ^^^^^^^^^^^
+6|myid-hsm | SyntaxError: The requested module '../lib/hsm-signer.mjs' does not provide an export named 'QES_FORMATS'
+6|myid-hsm |     at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+6|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+6|myid-hsm |     at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+6|myid-hsm |     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+6|myid-hsm | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+6|myid-hsm | file:///perform1/srv/work/myid-app/backend/routes/qes.mjs:18
+6|myid-hsm |   QES_FORMATS,
+6|myid-hsm |   ^^^^^^^^^^^
+6|myid-hsm | SyntaxError: The requested module '../lib/hsm-signer.mjs' does not provide an export named 'QES_FORMATS'
+6|myid-hsm |     at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+6|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+6|myid-hsm |     at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+6|myid-hsm |     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+

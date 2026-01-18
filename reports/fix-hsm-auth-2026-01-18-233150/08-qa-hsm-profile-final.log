@@ -1,0 +1,7 @@
+
+> myid-africa-pwa@1.0.0 qa:hsm-profile
+> node scripts/qa-hsm-profile.mjs
+
+Running QA Gate for HSM Operational Profile...
+
+HSM Profile QA Gate: PASSED

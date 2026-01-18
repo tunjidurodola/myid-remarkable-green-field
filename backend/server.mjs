@@ -22,13 +22,15 @@ import mdlRoutes from './routes/mdl.mjs';
 import consentRoutes from './routes/consent.mjs';
 import credentialsRoutes from './routes/credentials.mjs';
 import qesRoutes from './routes/qes.mjs';
+import hsmAdminRoutes from './routes/hsm-admin.mjs';
 
 // Import HSM modules for health checks
-import { hsmConnection } from './lib/hsm-signer.mjs';
+import { hsmSigner } from './lib/hsm-signer.mjs';
 
 // Import HSM Vault and Tools modules for slot segmentation
 import { loadMyidHsmConfig, loadSlotPins } from './lib/hsm-vault.mjs';
-import { listSlots as hsmListSlots } from './lib/hsm-tools.mjs';
+import { listSlots as hsmListSlots, getTokenInfo } from './lib/hsm-tools.mjs';
+import { initHsmState } from './lib/hsm-session.mjs';
 
 const app = express();
 const PORT = process.env.PORT || 6321;
@@ -185,9 +187,9 @@ app.get('/health', async (req, res) => {
       database: dbHealth,
       redis: redisHealth,
       hsm: {
-        host: process.env.HSM_HOST,
-        slot: process.env.HSM_SLOT,
-        label: process.env.HSM_LABEL,
+        host: _hsmState?.config.hsm_host || 'not_initialized',
+        slot: _hsmState?.config.default_slot || 'not_initialized',
+        label: _hsmState?.label || 'not_initialized',
       },
     },
   });
@@ -207,9 +209,9 @@ app.get('/api/health', async (req, res) => {
       database: dbHealth,
       redis: redisHealth,
       hsm: {
-        host: process.env.HSM_HOST,
-        slot: process.env.HSM_SLOT,
-        label: process.env.HSM_LABEL,
+        host: _hsmState?.config.hsm_host || 'not_initialized',
+        slot: _hsmState?.config.default_slot || 'not_initialized',
+        label: _hsmState?.label || 'not_initialized',
       },
     },
   });
@@ -233,9 +235,9 @@ app.get('/health/detailed', authenticateAPIKey, async (req, res) => {
       },
       redis: redisHealth,
       hsm: {
-        host: process.env.HSM_HOST,
-        slot: process.env.HSM_SLOT,
-        label: process.env.HSM_LABEL,
+        host: _hsmState?.config.hsm_host || 'not_initialized',
+        slot: _hsmState?.config.default_slot || 'not_initialized',
+        label: _hsmState?.label || 'not_initialized',
       },
     },
   });
@@ -270,6 +272,9 @@ app.use('/api/credentials', credentialsRoutes);
 // QES (Qualified Electronic Signature) routes
 app.use('/api/qes', qesRoutes);
 
+// HSM Admin routes
+app.use('/api/hsm/admin', authenticateAPIKey, hsmAdminRoutes);
+
 // ==================== HSM/CRYPTO ENDPOINTS (EXISTING) ====================
 
 /**
@@ -303,7 +308,7 @@ app.post('/api/crypto/keygen', authenticateAPIKey, async (req, res) => {
     res.json({
       success: true,
       publicKey: keyPair.publicKey,
-      keyHandle: `hsm://${process.env.HSM_SLOT}/${label}`,
+      keyHandle: `hsm://${_hsmState?.config.default_slot || '0000'}/${label}`,
       algorithm,
       keySize,
       timestamp: new Date().toISOString(),
@@ -572,16 +577,29 @@ async function validateHSMStartup() {
       slotPins[slot] = pins;
       // Log without PIN values
       const km_status = pins.km_pin ? 'present' : 'not set';
-      console.log(`[HSM] ✓ Loaded PINs for slot ${slot} (so_pin, usr_pin, km_pin: ${km_status})`);
+      console.log(`[HSM] ✓ Loaded PINs for slot ${slot} (usr_pin loaded, km_pin: ${km_status})`);
     }
 
-    // Step 6: Cache the validated state
+    // Step 6: Get token label for default slot
+    console.log(`[HSM] Getting token label for default slot ${config.default_slot}...`);
+    const label = await getTokenInfo(config.p11tool2_cmd, config.default_slot);
+    if (label) {
+      console.log(`[HSM] ✓ Token label: "${label}"`);
+    } else {
+      console.warn(`[HSM] Token label not found for slot ${config.default_slot}, using fallback`);
+    }
+
+    // Step 7: Cache the validated state
     _hsmState = {
       config,
       slotPins,
       slots_seen,
+      label: label || `SLOT_${config.default_slot}`,
       validated_at: new Date().toISOString()
     };
+
+    // Step 8: Initialize the HSM session module with the validated state
+    initHsmState(_hsmState);
 
     console.log('[HSM] ✓ Slot segmentation validation complete');
     console.log(`[HSM] Ready to serve with ${config.enabled_slots.length} slot(s)\n`);
@@ -606,9 +624,10 @@ app.listen(PORT, () => {
   console.log(`  Port: ${PORT}`);
   console.log(`  Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`\n  HSM Configuration:`);
-  console.log(`    Host: ${process.env.HSM_HOST}`);
-  console.log(`    Slot: ${process.env.HSM_SLOT}`);
-  console.log(`    Label: ${process.env.HSM_LABEL}`);
+  console.log(`    Host: ${_hsmState.config.hsm_host}`);
+  console.log(`    Default Slot: ${_hsmState.config.default_slot}`);
+  console.log(`    Label: ${_hsmState.label}`);
+  console.log(`    Enabled Slots: ${_hsmState.config.enabled_slots.join(', ')}`);
   console.log(`\n  Available Endpoints:`);
   console.log(`  ${'─'.repeat(56)}`);
   console.log(`  Health:`);

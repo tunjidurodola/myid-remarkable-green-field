@@ -1,0 +1,14 @@
+Use --update-env to update environment variables
+[PM2] Applying action restartProcessId on app [myid-hsm](ids: [ 6 ])
+[PM2] [myid-hsm](6) ✓
+┌────┬───────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name                  │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼───────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 3  │ ecosystem.myid.nv2    │ myid-check  │ 2.0.0   │ fork    │ 917612   │ 26h    │ 0    │ online    │ 0%       │ 52.3mb   │ root     │ disabled │
+│ 0  │ ecosystem.srvwork     │ default     │ N/A     │ fork    │ 917592   │ 26h    │ 0    │ online    │ 0%       │ 56.4mb   │ root     │ disabled │
+│ 6  │ myid-hsm              │ default     │ 1.0.0   │ cluster │ 2454286  │ 0s     │ 7    │ online    │ 0%       │ 42.0mb   │ root     │ disabled │
+│ 5  │ myid-ngrok            │ default     │ N/A     │ fork    │ 917619   │ 26h    │ 0    │ online    │ 0%       │ 25.4mb   │ root     │ disabled │
+│ 4  │ myid-pwa              │ default     │ 14.2.35 │ cluster │ 917614   │ 26h    │ 0    │ online    │ 0%       │ 340.2mb  │ root     │ disabled │
+│ 1  │ myid-pwa-server       │ default     │ 1.0.0   │ cluster │ 1965697  │ 8h     │ 10   │ online    │ 0%       │ 78.4mb   │ root     │ disabled │
+│ 2  │ myid-pwa-server       │ default     │ 1.0.0   │ cluster │ 1965709  │ 8h     │ 10   │ online    │ 0%       │ 75.2mb   │ root     │ disabled │
+└────┴───────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘

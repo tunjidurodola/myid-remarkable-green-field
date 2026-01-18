@@ -18,7 +18,7 @@ import redis from '../lib/redis.mjs';
 import { EiDAS2PID, EIDAS2_NAMESPACE, AGE_PREDICATES } from '../lib/eidas2.mjs';
 import { ICAODTCManager, MRZParser, ChipAuthSimulator, DTCSelectiveDisclosure, ICAO_NAMESPACE } from '../lib/icao-dtc.mjs';
 import { DIDKey, DIDPocketOne, VerifiableCredential, VerifiablePresentation, Ed25519Signer, CONTEXTS } from '../lib/did-vc.mjs';
-import { hsmSigner, certificateManager } from '../lib/hsm-signer.mjs';
+import { hsmSigner } from '../lib/hsm-signer.mjs';
 
 const router = Router();
 

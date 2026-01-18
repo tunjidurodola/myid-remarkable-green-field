@@ -1,0 +1,14 @@
+
+> myid-africa-pwa@1.0.0 qa:hsm-profile
+> node scripts/qa-hsm-profile.mjs
+
+Running QA Gate for HSM Operational Profile...
+[FAIL] Role Separation: Found 'so_pin' or 'SO_' in non-admin file: scripts/qa-hsm-profile.mjs
+[FAIL] Role Separation: Found 'so_pin' or 'SO_' in non-admin file: backend/server.mjs
+[FAIL] Role Separation: Found 'so_pin' or 'SO_' in non-admin file: backend/lib/hsm-vault.test.mjs
+[FAIL] Role Separation: Found 'so_pin' or 'SO_' in non-admin file: backend/lib/hsm-vault.mjs
+[FAIL] Role Separation: Found 'so_pin' or 'SO_' in non-admin file: backend/lib/hsm-tools.mjs
+[FAIL] Role Separation: Found 'so_pin' or 'SO_' in non-admin file: backend/lib/hsm-session.mjs
+[FAIL] Banner Display: Found process.env.HSM_SLOT or process.env.HSM_LABEL in server banner output.
+
+HSM Profile QA Gate: FAILED

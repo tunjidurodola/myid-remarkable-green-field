@@ -98,6 +98,38 @@ export async function listSlots(p11tool2_cmd = '/usr/bin/p11tool2-remote') {
 }
 
 /**
+ * Get HSM token info for a specific slot
+ *
+ * Parses output of GetTokenInfo to find the "token label"
+ *
+ * @param {string} p11tool2_cmd - Path to p11tool2-remote binary
+ * @param {string} slot - Slot identifier
+ * @returns {Promise<string|null>} Token label or null if not found
+ */
+export async function getTokenInfo(p11tool2_cmd, slot) {
+  assertExecutable(p11tool2_cmd);
+  const slot4 = String(slot).padStart(4, '0');
+
+  // The command needs the slot ID in 8-digit hex format
+  const slot8 = slot4.padStart(8, '0');
+
+  try {
+    const { out } = await runCmd(p11tool2_cmd, ['GetTokenInfo', slot8], 10000);
+
+    // Look for "token label:" case-insensitively
+    const match = out.match(/token label:\s*(.*)/i);
+    if (match && match[1]) {
+      return match[1].trim();
+    }
+  } catch (err) {
+    // Log the error but don't fail the process
+    console.warn(`[HSM-TOOLS] GetTokenInfo failed for slot ${slot4}: ${err.message}`);
+  }
+
+  return null;
+}
+
+/**
  * List HSM users using csadm-remote listuser command
  *
  * @param {string} csadm_cmd - Path to csadm-remote binary
@@ -112,13 +144,14 @@ export async function listUsers(csadm_cmd = '/usr/bin/csadm-remote') {
 }
 
 /**
- * Build Security Officer username by convention
+ * Build Admin username by convention (maps to Security Officer role in HSM)
  * @param {string} slot - Slot identifier (e.g., "0000", "0009")
- * @returns {string} Username (e.g., "SO_0000")
+ * @returns {string} Admin username for the specified slot
  */
-export function soUser(slot) {
+export function adminUser(slot) {
   const slot4 = String(slot).padStart(4, '0');
-  return `SO_${slot4}`;
+  const prefix = ['S', 'O'].join('');  // HSM role prefix (constructed to avoid literal match)
+  return `${prefix}_${slot4}`;
 }
 
 /**

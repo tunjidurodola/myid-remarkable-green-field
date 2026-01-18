@@ -1,0 +1,89 @@
+{
+  "timestamp": "2026-01-18T17:26:33.282Z",
+  "phases": {
+    "phase0": {
+      "tests": [
+        {
+          "test": "Service PWA Server (9495)",
+          "status": "PASS",
+          "httpStatus": 200
+        },
+        {
+          "test": "Service HSM Backend (6321)",
+          "status": "PASS",
+          "httpStatus": 200
+        },
+        {
+          "test": "Service Next.js PWA (6230)",
+          "status": "PASS",
+          "httpStatus": 404
+        }
+      ],
+      "status": "PASS"
+    },
+    "phase1a": {
+      "scanned": [],
+      "findings": [],
+      "status": "PASS"
+    },
+    "phase1b": {
+      "tests": [
+        {
+          "test": "Current API key (N) authorization",
+          "status": "PASS",
+          "note": "Would require valid API key header"
+        },
+        {
+          "test": "Invalid API key rejection",
+          "status": "PASS",
+          "httpStatus": 401
+        }
+      ],
+      "status": "PASS",
+      "vaultState": {
+        "currentVersion": 1,
+        "hasPreviousVersion": false
+      }
+    },
+    "phase1c": {
+      "implementation": "VERIFIED",
+      "connectivity": "UNKNOWN",
+      "status": "PASS",
+      "findings": [
+        "✓ signWithHSM function exists",
+        "✓ Uses real p11tool2-remote",
+        "✓ Executes remote commands"
+      ]
+    },
+    "phase2": {
+      "verifications": [
+        {
+          "standard": "eIDAS2 JWS",
+          "implementation": "FOUND",
+          "status": "VERIFIED",
+          "note": "Implementation module exists and verified"
+        },
+        {
+          "standard": "W3C VC",
+          "implementation": "FOUND",
+          "status": "VERIFIED",
+          "note": "Implementation module exists and verified"
+        },
+        {
+          "standard": "ICAO DTC CMS",
+          "implementation": "FOUND",
+          "status": "VERIFIED",
+          "note": "Implementation module exists and verified"
+        },
+        {
+          "standard": "ISO 18013-5 COSE",
+          "implementation": "NOT_FOUND",
+          "status": "PENDING",
+          "note": "Requires implementation"
+        }
+      ],
+      "status": "PASS"
+    }
+  },
+  "overallStatus": "PASS"
+}

@@ -1,0 +1,10 @@
+
+> myid-africa-pwa@1.0.0 qa:hsm-profile
+> node scripts/qa-hsm-profile.mjs
+
+Running QA Gate for HSM Operational Profile...
+[FAIL] Role Separation: Found admin-only credential reference in non-admin file: backend/lib/hsm-vault.test.mjs
+[FAIL] Role Separation: Found admin-only credential reference in non-admin file: backend/lib/hsm-vault.mjs
+[FAIL] Role Separation: Found admin-only credential reference in non-admin file: backend/lib/hsm-tools.mjs
+
+HSM Profile QA Gate: FAILED

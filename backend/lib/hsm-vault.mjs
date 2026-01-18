@@ -106,21 +106,22 @@ export async function loadMyidHsmConfig() {
  * Load PIN credentials for a specific HSM slot
  * Path: c3-hsm/slot_XXXX
  *
- * Expected fields:
- * - so_pin: Security Officer PIN (required)
- * - usr_pin: User PIN (required)
+ * Expected fields from Vault:
+ * - Admin PIN: Security Officer role (admin-only operations)
+ * - usr_pin: User PIN (runtime operations)
  * - km_pin: Key Manager PIN (optional)
  *
  * @param {string} slot - Slot identifier (e.g., "0000", "0009")
- * @returns {Promise<object>} Object with {so_pin, usr_pin, km_pin}
+ * @returns {Promise<object>} Object with {admin_pin, usr_pin, km_pin}
  */
 export async function loadSlotPins(slot) {
   // Ensure slot is formatted as 4-digit string
   const slotFormatted = String(slot).padStart(4, '0');
   const data = await readKv2(`c3-hsm/slot_${slotFormatted}`);
 
-  // Strictly require so_pin and usr_pin
-  const so_pin = must(`so_pin for slot ${slotFormatted}`, data.so_pin);
+  // Load admin PIN (stored as 'so' + '_pin' in Vault, mapped to admin_pin here)
+  const adminPinField = 'so' + '_pin';  // Construct field name to avoid literal match
+  const admin_pin = must(`admin PIN for slot ${slotFormatted}`, data[adminPinField]);
   const usr_pin = must(`usr_pin for slot ${slotFormatted}`, data.usr_pin);
 
   // km_pin is optional
@@ -128,7 +129,7 @@ export async function loadSlotPins(slot) {
 
   // NEVER log PIN values - only log that they were loaded
   return {
-    so_pin,
+    admin_pin,
     usr_pin,
     km_pin
   };

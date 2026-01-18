@@ -1,0 +1,66 @@
+[PM2][ERROR] File ecosystem.config.js not found
+[TAILING] Tailing last 30 lines for [myid-hsm] process (change the value with --lines option)
+/perform1/srv/work/myid-app/backend/logs/hsm-out.log last 30 lines:
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/qes/sign              - Sign document with QES
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/qes/verify            - Verify QES signature
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/qes/certificate       - Get user's QES certificate
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/qes/request-certificate - Request QES certificate
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/qes/signatures        - List user's signatures
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/qes/audit-log         - Get QES audit log
+7|myid-hsm | 2026-01-18 21:27:43 +04:00: 
+7|myid-hsm |   HSM/Crypto:
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/keygen         - Generate key pair
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/sign           - Sign data
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+7|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/qes/sign       - QES signing
+7|myid-hsm | 2026-01-18 21:27:43 +04:00: ============================================================
+7|myid-hsm | 
+7|myid-hsm | 2026-01-18 21:51:41 +04:00: GET /api/hsm/readiness - 401 (66ms)
+7|myid-hsm | 2026-01-18 21:51:55 +04:00: GET /api/hsm/readiness - 401 (1ms)
+7|myid-hsm | 2026-01-18 22:40:14 +04:00: 
+7|myid-hsm | Shutting down gracefully...
+7|myid-hsm | 2026-01-18 22:40:14 +04:00: Database pool closed
+7|myid-hsm | 2026-01-18 22:40:14 +04:00: Redis connection closed
+7|myid-hsm | 2026-01-18 23:34:23 +04:00: Database config - DB_HOST: db.pocket.one
+7|myid-hsm | 2026-01-18 23:34:23 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+7|myid-hsm | 2026-01-18 23:34:23 +04:00: Database: SSL enabled
+7|myid-hsm | 2026-01-18 23:34:23 +04:00: Redis connected
+7|myid-hsm | 2026-01-18 23:34:23 +04:00: Redis ready
+7|myid-hsm | 2026-01-18 23:35:20 +04:00: Database config - DB_HOST: db.pocket.one
+7|myid-hsm | 2026-01-18 23:35:20 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+7|myid-hsm | 2026-01-18 23:35:20 +04:00: Database: SSL enabled
+7|myid-hsm | 2026-01-18 23:35:20 +04:00: Redis connected
+7|myid-hsm | 2026-01-18 23:35:20 +04:00: Redis ready
+
+/perform1/srv/work/myid-app/backend/logs/hsm-error.log last 30 lines:
+7|myid-hsm | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+7|myid-hsm | file:///perform1/srv/work/myid-app/backend/routes/qes.mjs:18
+7|myid-hsm |   QES_FORMATS,
+7|myid-hsm |   ^^^^^^^^^^^
+7|myid-hsm | SyntaxError: The requested module '../lib/hsm-signer.mjs' does not provide an export named 'QES_FORMATS'
+7|myid-hsm |     at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+7|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+7|myid-hsm |     at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+7|myid-hsm |     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+7|myid-hsm | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+7|myid-hsm | file:///perform1/srv/work/myid-app/backend/routes/qes.mjs:18
+7|myid-hsm |   QES_FORMATS,
+7|myid-hsm |   ^^^^^^^^^^^
+7|myid-hsm | SyntaxError: The requested module '../lib/hsm-signer.mjs' does not provide an export named 'QES_FORMATS'
+7|myid-hsm |     at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+7|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+7|myid-hsm |     at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+7|myid-hsm |     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+7|myid-hsm | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+7|myid-hsm | Error: Missing required config: vault:kv-v2/myid/hsm/api api_key
+7|myid-hsm |     at must (file:///perform1/srv/work/myid-app/backend/lib/secrets.mjs:5:17)
+7|myid-hsm |     at getBackendSecrets (file:///perform1/srv/work/myid-app/backend/lib/secrets.mjs:115:19)
+7|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+7|myid-hsm |     at async file:///perform1/srv/work/myid-app/backend/routes/auth.mjs:17:36
+7|myid-hsm | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+7|myid-hsm | Error: Missing required config: vault:kv-v2/myid/hsm/api api_key
+7|myid-hsm |     at must (file:///perform1/srv/work/myid-app/backend/lib/secrets.mjs:5:17)
+7|myid-hsm |     at getBackendSecrets (file:///perform1/srv/work/myid-app/backend/lib/secrets.mjs:115:19)
+7|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+7|myid-hsm |     at async file:///perform1/srv/work/myid-app/backend/routes/mdl.mjs:34:36
+

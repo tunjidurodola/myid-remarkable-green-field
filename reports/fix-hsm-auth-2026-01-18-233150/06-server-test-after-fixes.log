@@ -1,0 +1,10 @@
+file:///perform1/srv/work/myid-app/backend/routes/hsm-admin.mjs:11
+import { getHsmState, getSoSession } from '../lib/hsm-session.mjs';
+                      ^^^^^^^^^^^^
+SyntaxError: The requested module '../lib/hsm-session.mjs' does not provide an export named 'getSoSession'
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0

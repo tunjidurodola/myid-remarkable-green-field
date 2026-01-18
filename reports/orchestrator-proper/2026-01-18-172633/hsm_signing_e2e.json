@@ -1,0 +1,10 @@
+{
+  "implementation": "VERIFIED",
+  "connectivity": "UNKNOWN",
+  "status": "PASS",
+  "findings": [
+    "✓ signWithHSM function exists",
+    "✓ Uses real p11tool2-remote",
+    "✓ Executes remote commands"
+  ]
+}

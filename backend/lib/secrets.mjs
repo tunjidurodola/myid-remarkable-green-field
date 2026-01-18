@@ -104,16 +104,10 @@ export async function getBackendSecrets() {
 
   const mount = process.env.VAULT_KV_MOUNT || 'kv-v2';
   const jwtPath = process.env.VAULT_PATH_HSM_JWT || 'myid/hsm/jwt';
-  const apiPath = process.env.VAULT_PATH_HSM_API || 'myid/hsm/api';
 
-  const [jwt, api] = await Promise.all([
-    vaultReadKv2({ mount, path: jwtPath }),
-    vaultReadKv2({ mount, path: apiPath })
-  ]);
-
+  const jwt = await vaultReadKv2({ mount, path: jwtPath });
   const jwt_secret = must(`vault:${mount}/${jwtPath} jwt_secret`, jwt.jwt_secret);
-  const api_key = must(`vault:${mount}/${apiPath} api_key`, api.api_key);
 
-  _cache = { jwt_secret, api_key, mount, jwtPath, apiPath };
+  _cache = { jwt_secret, mount, jwtPath };
   return _cache;
 }

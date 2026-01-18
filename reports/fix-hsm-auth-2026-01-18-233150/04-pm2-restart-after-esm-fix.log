@@ -1,0 +1,45 @@
+[TAILING] Tailing last 20 lines for [myid-hsm] process (change the value with --lines option)
+/perform1/srv/work/myid-app/backend/logs/hsm-out.log last 20 lines:
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     GET  /api/qes/audit-log         - Get QES audit log
+6|myid-hsm | 2026-01-18 21:27:43 +04:00: 
+6|myid-hsm |   HSM/Crypto:
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/keygen         - Generate key pair
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/sign           - Sign data
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/cert/issue     - Issue certificate
+6|myid-hsm | 2026-01-18 21:27:43 +04:00:     POST /api/crypto/qes/sign       - QES signing
+6|myid-hsm | 2026-01-18 21:27:43 +04:00: ============================================================
+6|myid-hsm | 
+6|myid-hsm | 2026-01-18 21:51:41 +04:00: GET /api/hsm/readiness - 401 (66ms)
+6|myid-hsm | 2026-01-18 21:51:55 +04:00: GET /api/hsm/readiness - 401 (1ms)
+6|myid-hsm | 2026-01-18 22:40:14 +04:00: 
+6|myid-hsm | Shutting down gracefully...
+6|myid-hsm | 2026-01-18 22:40:14 +04:00: Database pool closed
+6|myid-hsm | 2026-01-18 22:40:14 +04:00: Redis connection closed
+6|myid-hsm | 2026-01-18 23:34:23 +04:00: Database config - DB_HOST: db.pocket.one
+6|myid-hsm | 2026-01-18 23:34:23 +04:00: Database: Using TCP connection to db.pocket.one : 5432
+6|myid-hsm | 2026-01-18 23:34:23 +04:00: Database: SSL enabled
+6|myid-hsm | 2026-01-18 23:34:23 +04:00: Redis connected
+6|myid-hsm | 2026-01-18 23:34:23 +04:00: Redis ready
+
+/perform1/srv/work/myid-app/backend/logs/hsm-error.log last 20 lines:
+6|myid-hsm | SyntaxError: The requested module '../lib/hsm-signer.mjs' does not provide an export named 'QES_FORMATS'
+6|myid-hsm |     at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+6|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+6|myid-hsm |     at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+6|myid-hsm |     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+6|myid-hsm | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+6|myid-hsm | file:///perform1/srv/work/myid-app/backend/routes/qes.mjs:18
+6|myid-hsm |   QES_FORMATS,
+6|myid-hsm |   ^^^^^^^^^^^
+6|myid-hsm | SyntaxError: The requested module '../lib/hsm-signer.mjs' does not provide an export named 'QES_FORMATS'
+6|myid-hsm |     at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+6|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+6|myid-hsm |     at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
+6|myid-hsm |     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+6|myid-hsm | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+6|myid-hsm | Error: Missing required config: vault:kv-v2/myid/hsm/api api_key
+6|myid-hsm |     at must (file:///perform1/srv/work/myid-app/backend/lib/secrets.mjs:5:17)
+6|myid-hsm |     at getBackendSecrets (file:///perform1/srv/work/myid-app/backend/lib/secrets.mjs:115:19)
+6|myid-hsm |     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+6|myid-hsm |     at async file:///perform1/srv/work/myid-app/backend/routes/auth.mjs:17:36
+

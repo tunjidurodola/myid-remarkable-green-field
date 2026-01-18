@@ -1,0 +1,6 @@
+{
+  "standard": "W3C VC",
+  "implementation": "../lib/credentials/w3c-did.ts",
+  "status": "VERIFIED",
+  "timestamp": "2026-01-18T17:26:40.589Z"
+}

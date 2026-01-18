@@ -1,0 +1,6 @@
+{
+  "standard": "ICAO DTC CMS",
+  "implementation": "../backend/lib/icao-dtc.mjs",
+  "status": "VERIFIED",
+  "timestamp": "2026-01-18T19:42:01.430Z"
+}

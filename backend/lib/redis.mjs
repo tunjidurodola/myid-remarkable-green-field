@@ -400,14 +400,28 @@ export async function healthCheck() {
 
 /**
  * Close Redis connection (for graceful shutdown)
+ * Idempotent: safe to call multiple times
  */
 export async function close() {
   if (client) {
+    // Check if already closed
+    if (client.status === 'end' || client.status === 'close') {
+      // Already closed, silently return
+      return;
+    }
+
     try {
       await client.quit();
       console.log('Redis connection closed');
     } catch (err) {
-      console.warn('Error closing Redis connection:', err.message);
+      // Only silence "Connection is closed" errors (idempotent close)
+      if (err.message && err.message.includes('Connection is closed')) {
+        // Benign - connection already closed
+        return;
+      }
+      // Re-throw other errors as they indicate real problems
+      console.error('Error closing Redis connection:', err.message);
+      throw err;
     }
   }
 }
