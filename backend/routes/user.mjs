@@ -4,6 +4,7 @@
  */
 
 import { Router } from 'express';
+import { getBackendSecrets } from "../lib/secrets.mjs";
 import jwt from 'jsonwebtoken';
 import db from '../lib/db.mjs';
 import redis from '../lib/redis.mjs';
@@ -11,8 +12,7 @@ import redis from '../lib/redis.mjs';
 const router = Router();
 
 // JWT configuration
-const JWT_SECRET = process.env.JWT_SECRET || 'myid-jwt-secret-key-change-in-production';
-
+const { jwt_secret: JWT_SECRET } = await getBackendSecrets();
 /**
  * JWT authentication middleware
  */

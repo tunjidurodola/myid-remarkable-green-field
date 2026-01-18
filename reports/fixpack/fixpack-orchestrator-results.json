@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "agent": "01-vault-secrets-required.mjs",
+      "code": 0,
+      "stderr": ""
+    },
+    {
+      "agent": "02-scan-and-ban-hardcoded-secrets.mjs",
+      "code": 0,
+      "stderr": ""
+    },
+    {
+      "agent": "03-patch-runtime-to-load-secrets-from-vault.mjs",
+      "code": 0,
+      "stderr": ""
+    },
+    {
+      "agent": "04-fix-dependency-vulns.mjs",
+      "code": 0,
+      "stderr": ""
+    },
+    {
+      "agent": "06-crypto-stub-detector-and-gate.mjs",
+      "code": 0,
+      "stderr": ""
+    }
+  ]
+}

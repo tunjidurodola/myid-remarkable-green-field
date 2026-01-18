@@ -207,7 +207,7 @@ Holder ----→---- Verifier
 
 ### 2. Minimal Disclosure
 - Share only required attributes
-- Zero-knowledge proofs for predicates
+- Hash-based selective disclosure (non-ZKP) for predicates
 
 ### 3. Holder Binding
 - Cryptographic proof of DID control

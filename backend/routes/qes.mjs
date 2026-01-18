@@ -4,6 +4,7 @@
  */
 
 import { Router } from 'express';
+import { getBackendSecrets } from "../lib/secrets.mjs";
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
@@ -21,8 +22,7 @@ import {
 const router = Router();
 
 // JWT configuration
-const JWT_SECRET = process.env.JWT_SECRET || 'myid-jwt-secret-key-change-in-production';
-
+const { jwt_secret: JWT_SECRET } = await getBackendSecrets();
 /**
  * Middleware to verify JWT token
  */

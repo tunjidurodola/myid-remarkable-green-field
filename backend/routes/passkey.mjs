@@ -4,6 +4,7 @@
  */
 
 import { Router } from 'express';
+import { getBackendSecrets } from "../lib/secrets.mjs";
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
@@ -24,7 +25,7 @@ const rpID = process.env.WEBAUTHN_RP_ID || 'localhost';
 const origin = process.env.WEBAUTHN_ORIGIN || 'http://localhost:6230';
 
 // JWT configuration
-const JWT_SECRET = process.env.JWT_SECRET || 'myid-jwt-secret-key-change-in-production';
+const { jwt_secret: JWT_SECRET } = await getBackendSecrets();
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '24h';
 
 /**

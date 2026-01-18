@@ -1,48 +1,31 @@
-You are AGENT-1 (BUILDER). Node 22.22.0.
+You are Agent1 (Implementation). Node 22.22.0 only.
 
-Repo is under /srv/work. Use route-manifest.json as source of truth.
+Mission: Phase-4 hardening and evidence. Do NOT add new product features. Do NOT invent UI. Do NOT change screen layouts except to make them match https://myid.africa/screens/ exactly.
 
-Implement PHASE <N> only:
-- Scope routes: <list slugs + paths>
-- Backend endpoints: <list>
-- Storage/crypto: <list>
-- Tests: <list>
+Canonical runtime:
+- myid-pwa-server: http://127.0.0.1:9495  (must expose /api/health)
+- myid-hsm:        http://127.0.0.1:6321  (must expose /api/health or /health)
+- myid-pwa:        http://127.0.0.1:6230
+- Redis TLS locally on 7100..7112 with certs under /perform1/redis/certs
+- HSM: slot 0 label pocketOne_CA on host 172.27.127.129
 
-Rules:
-- Do not touch routes outside scope.
-- No placeholders or dead buttons.
-- Add/adjust components under /components with reuse.
-- Update /docs/PHASE_<N>.md with architecture + decisions.
+Required outputs (edit files, commit):
+1) Ensure route-manifest.json exists at repo root. If it exists elsewhere, copy it; do not regenerate.
+2) Create scripts/smoke.mjs that:
+   - checks GET http://127.0.0.1:9495/api/health == 200
+   - checks GET http://127.0.0.1:6321/api/health or /health == 200
+   - checks PWA root 200
+   - checks unauthenticated calls to key APIs return 401/403/400 (not 500)
+3) Create docs/RUNTIME.md with:
+   - PM2 process list (names, ports, cwd/script path)
+   - environment variable NAMES only (no values)
+4) Create docs/SECURITY.md describing:
+   - PII in local storage (PWA)
+   - BLAKE3 selective disclosure approach
+   - MC/TC as claims with pocketOne OID usage
+Do not include any secret values or tokens.
 
-Exit criteria:
-- yarn lint, yarn typecheck, yarn test:e2e pass
-- route audit passes (manifest subset matches implemented routes)
-Return a summary + files changed.
-
-PLATFORM INTEGRATION RULES (MANDATORY)
-
-Code must run on Node 22.22.0, but remain compatible with Node 20.11.0 APIs and syntax (no unstable Node-only features).
-
-Before implementing screens/routes, generate /docs/PLATFORM_INVENTORY.md by reading:
-
-PostgreSQL information_schema + pg_catalog for schemas/tables/indexes
-
-Redis SCAN-based sampling for key patterns (no KEYS)
-
-PM2 process inventory
-
-HSM readiness check (PKCS#11 adapter probe)
-
-Create a reusable data-access layer:
-
-/server/db/pg.ts (Knex or pg with strict prepared statements)
-
-/server/db/redis.ts (ioredis)
-
-/server/hsm/pkcs11.ts (adapter pattern; hard fail if “HSM mode” enabled but not connected)
-
-The PWA/native apps must use existing DB tables where appropriate; if a new table is required, write a migration and document it in /docs/DB_CHANGES_PHASE_<N>.md.
-
-PM2: create an ecosystem.config.cjs or update the existing one to include frontend and backend services with stable names, restart policies, log paths, health checks.
-
-No placeholders: every UI action must call a real endpoint that persists to PostgreSQL/Redis or uses HSM signing.
+Verification: after changes, run:
+- node scripts/smoke.mjs
+- pm2 status
+And paste outputs in your final message.

@@ -7,12 +7,13 @@
  */
 
 import Redis from 'ioredis';
+import fs from 'fs';
 
 // Redis connection configuration
 const redisConfig = {
   host: process.env.REDIS_HOST || '127.0.0.1',
   port: parseInt(process.env.REDIS_PORT_1 || '7100', 10),
-  password: process.env.REDIS_PASSWORD || undefined,
+  password: process.env.REDISCLI_AUTH || process.env.REDIS_PASSWORD || undefined,
   maxRetriesPerRequest: 3,
   retryStrategy: (times) => {
     if (times > 3) {
@@ -23,6 +24,12 @@ const redisConfig = {
   },
   lazyConnect: true,
   enableOfflineQueue: false, // Don't queue commands when disconnected
+  tls: process.env.REDIS_CACERT ? {
+    ca: fs.readFileSync(process.env.REDIS_CACERT),
+    cert: process.env.REDIS_CERT ? fs.readFileSync(process.env.REDIS_CERT) : undefined,
+    key: process.env.REDIS_KEY ? fs.readFileSync(process.env.REDIS_KEY) : undefined,
+    rejectUnauthorized: false, // Allow self-signed certificates
+  } : undefined,
 };
 
 // Create Redis client

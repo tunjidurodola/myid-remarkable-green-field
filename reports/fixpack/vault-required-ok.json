@@ -1,0 +1,21 @@
+{
+  "mount": "kv-v2",
+  "evidence": {
+    "myid/pwa/jwt": [
+      "created_at",
+      "jwt_secret"
+    ],
+    "myid/pwa/api": [
+      "api_key",
+      "created_at"
+    ],
+    "myid/hsm/jwt": [
+      "created_at",
+      "jwt_secret"
+    ],
+    "myid/hsm/api": [
+      "api_key",
+      "created_at"
+    ]
+  }
+}

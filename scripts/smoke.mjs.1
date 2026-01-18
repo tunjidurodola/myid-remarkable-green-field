@@ -1,0 +1,44 @@
+import { exec } from 'child_process';
+
+console.log('Running HSM remote signing smoke test...');
+
+function executeCommand(command) {
+  return new Promise((resolve, reject) => {
+    exec(command, { encoding: 'utf-8', timeout: 15000 }, (error, stdout, stderr) => {
+      if (error) {
+        reject({ error, stdout, stderr });
+        return;
+      }
+      if (stdout.includes('Slot') || stdout.includes('token') || stdout.includes('label')) {
+        console.log(`Command "${command}" successful.`);
+        resolve(stdout);
+      } else {
+        reject({ error: new Error('No valid slots found in output.'), stdout, stderr });
+      }
+    });
+  });
+}
+
+async function runHsmCheck() {
+  try {
+    const output = await executeCommand('/usr/bin/p11tool2-remote ListSlots');
+    console.log('HSM Smoke Test Passed: Successfully listed slots via p11tool2-remote.');
+    console.log(output.trim().split('\n').slice(0, 30).join('\n'));
+    process.exit(0);
+  } catch (p11toolError) {
+    console.warn('/usr/bin/p11tool2-remote ListSlots failed. Trying csadm-remote as a fallback...');
+    console.warn(`(p11tool2-remote error: ${p11toolError.stderr || p11toolError.error.message || 'Unknown error'})`);
+    try {
+      const output = await executeCommand('/usr/bin/csadm-remote list-slots');
+      console.log('HSM Smoke Test Passed: Successfully listed slots via csadm-remote.');
+      console.log(output.trim().split('\n').slice(0, 30).join('\n'));
+      process.exit(0);
+    } catch (csadmError) {
+      console.error('HSM Smoke Test Failed: Both p11tool2-remote and csadm-remote failed.');
+      console.error(`(csadm-remote error: ${csadmError.stderr || csadmError.error.message || 'Unknown error'})`);
+      process.exit(1);
+    }
+  }
+}
+
+runHsmCheck();

@@ -1,0 +1,79 @@
+[2026-01-18T14:05:09+04:00] Orchestrator started
+
+[0;34m═══════════════════════════════════════════════════════════[0m
+[0;34mRunning Agent 1: Crypto Implementer[0m
+[0;34m═══════════════════════════════════════════════════════════[0m
+
+[AGENT1] Starting crypto implementation hardening...
+[AGENT1] Verifying HSM slot 0 Root CA...
+[AGENT1] ⚠ WARNING: csadm-remote check failed: Command failed: /usr/local/bin/csadm-remote --help
+
+[AGENT1] Fixing eIDAS2 signature verification...
+[AGENT1] ⚠ WARNING: eIDAS2 verifySignature stub pattern not found, may already be fixed
+[AGENT1] Fixing HSM signing implementation...
+[AGENT1] ✓ Replaced HSM simulation with PKCS#11 integration stubs (requires graphene-pk11 or p11tool2-remote) in backend/lib/hsm-signer.mjs
+[AGENT1] ⚠ WARNING: HSM signing now requires PKCS#11 library configuration - see hsm-signer.mjs comments
+[AGENT1] Adding verification test fixtures...
+[AGENT1] ✓ Added eIDAS2 verification test suite in backend/lib/verifiers.test.mjs
+[AGENT1] Generating agent report...
+[AGENT1] Report written to /perform1/srv/work/myid-app/reports/crypto-pack/20260118-140509/agent1-report.json
+[AGENT1] ✅ Completed successfully with 2 changes
+
+[0;32m✓ Agent 1 completed successfully in 1s[0m
+[2026-01-18T14:05:10+04:00] Agent 1 PASSED (1s)
+
+[0;34m═══════════════════════════════════════════════════════════[0m
+[0;34mRunning Agent 2: Vault Hardening[0m
+[0;34m═══════════════════════════════════════════════════════════[0m
+
+[AGENT2] Starting Vault hardening...
+[AGENT2] Scanning for hardcoded secrets...
+[AGENT2] No hardcoded secrets found
+[AGENT2] Implementing API key rotation with N vs N-1 validation...
+[AGENT2] ✓ Implemented N vs N-1 API key rotation with 24h grace period in backend/server.mjs
+[AGENT2] Hardening secrets loader...
+[AGENT2] Verifying PM2 configuration...
+[AGENT2] PM2 config verified - no hardcoded secrets found
+[AGENT2] Generating agent report...
+[AGENT2] Report written to /perform1/srv/work/myid-app/reports/crypto-pack/20260118-140509/agent2-report.json
+[AGENT2] ✅ Completed successfully with 1 changes
+
+[0;32m✓ Agent 2 completed successfully in 0s[0m
+[2026-01-18T14:05:10+04:00] Agent 2 PASSED (0s)
+
+[0;34m═══════════════════════════════════════════════════════════[0m
+[0;34mRunning Agent 3: QA Security Audit[0m
+[0;34m═══════════════════════════════════════════════════════════[0m
+
+[AGENT3] Starting security audit...
+[AGENT3] Auditing verification code...
+[AGENT3] ✓ PASS: ISO 18013-5 MDL verification uses real COSE_Sign1
+[AGENT3] ✗ CRITICAL: DID/VC verification may not use real JWS (/perform1/srv/work/myid-app/backend/lib/verifiers.mjs)
+[AGENT3] ✓ PASS: ICAO DTC SOD verification uses real OpenSSL CMS
+[AGENT3] ⚠ WARNING: eIDAS2 verification may be stubbed (/perform1/srv/work/myid-app/backend/lib/eidas2.mjs)
+[AGENT3] Auditing secrets management...
+[AGENT3] ✓ PASS: Vault integration present in secrets loader
+[AGENT3] ✓ PASS: No fallback secrets found in secrets loader
+[AGENT3] ✓ PASS: Fail-closed behavior implemented (throws on missing secrets)
+[AGENT3] ✓ PASS: PM2 config contains no hardcoded secrets
+[AGENT3] Auditing HSM integration...
+[AGENT3] ✓ PASS: HSM signing updated to use PKCS#11 integration
+[AGENT3] ⚠ INFO: HSM signing requires PKCS#11 library configuration (/perform1/srv/work/myid-app/backend/lib/hsm-signer.mjs)
+[AGENT3] ✓ PASS: HSM signing references PKCS#11 tools
+[AGENT3] Running verification tests...
+[AGENT3] ⚠ INFO: Verification tests not run: Command failed: npm test
+npm error Missing script: "test"
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: /root/.npm/_logs/2026-01-18T10_05_10_209Z-debug-0.log
+
+[AGENT3] Checking for verification stubs...
+[AGENT3] ✓ PASS: No verification stubs found in production code
+[AGENT3] Generating comprehensive security audit report...
+[AGENT3] Report written to /perform1/srv/work/myid-app/reports/crypto-pack/20260118-140509/agent3-report.json
+[AGENT3] Summary written to /perform1/srv/work/myid-app/reports/crypto-pack/20260118-140509/SECURITY_AUDIT_SUMMARY.md
+[AGENT3] ❌ Security audit FAILED with 1 critical findings
+
+[0;31m✗ Agent 3 failed with exit code 1 after 0s[0m
+[2026-01-18T14:05:10+04:00] Agent 3 FAILED (0s, exit=1)

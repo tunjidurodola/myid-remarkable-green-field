@@ -182,7 +182,7 @@ myid-app/
 ✅ **ISO 18013-5 mDL**
    - CBOR encoding/decoding
    - Selective disclosure
-   - Age-over proofs (zero-knowledge)
+   - Age-over proofs (hash-based selective disclosure, non-ZKP)
    - MC + TC embedding
    - Issuer signature verification
 

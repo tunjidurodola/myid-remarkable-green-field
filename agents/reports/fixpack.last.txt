@@ -1,0 +1,11 @@
+
+▶ 01-vault-secrets-required.mjs
+
+▶ 02-scan-and-ban-hardcoded-secrets.mjs
+
+▶ 03-patch-runtime-to-load-secrets-from-vault.mjs
+
+▶ 04-fix-dependency-vulns.mjs
+
+▶ 05-remove-fake-compliance-claims.mjs
+[FAIL] Blocked by 05-remove-fake-compliance-claims.mjs. See reports/fixpack for details.

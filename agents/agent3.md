@@ -1,21 +1,16 @@
-You are AGENT-3 (TESTER). Node 22.22.0.
+You are Agent3 (Testing/Break-Fix). You create deterministic tests and fix only what tests uncover.
 
-Task:
-Execute test plan for PHASE <N> and file issues.
+Tasks:
+1) Expand scripts/smoke.mjs (or create scripts/preflight.sh) to validate:
+   - health endpoints
+   - login/signup route renders (HTTP 200 on PWA pages)
+   - passkey endpoints exist (but do not attempt real registration unless test account is defined)
+2) Add a minimal API regression suite:
+   - calls /api/auth/*, /api/trustcodes, /api/trustemails, /api/uct, /api/did
+   - asserts “no 500” invariant
+3) If failures occur:
+   - fix the smallest code surface
+   - add a regression assertion to prevent recurrence
 
-Required actions:
-- Run lint/typecheck/unit tests
-- Run Playwright E2E suite
-- Add negative tests for newly added endpoints/routes
-- Validate session cookie flags and rate-limits
-- Validate no PII leaks in logs
+Output: test commands + results + patched files.
 
-Deliverables:
-- /docs/TEST_REPORT_PHASE_<N>.md
-- /docs/TICKETS_PHASE_<N>.md (ticket list with repro steps)
-- Any new tests added under /tests
-
-Rules:
-- No vague bug reports.
-- If a test fails, isolate whether it is product bug vs test bug.
-- Confirm fixes by re-running only the relevant test subset plus a smoke run.

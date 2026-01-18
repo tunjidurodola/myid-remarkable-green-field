@@ -1,0 +1,13 @@
+
+PATCH REQUIRED (manual but fast; no stubs):
+1) Import and call loadMyIdSecrets() at server startup for:
+   - /perform1/srv/work/www/html/myid/pwa-app/server/index.js
+   - /perform1/srv/work/myid-app/backend/server.mjs (myid-hsm)
+2) Replace any use of process.env.JWT_SECRET / process.env.API_KEY with the loaded values in memory.
+3) Remove JWT_SECRET/API_KEY from any ecosystem.config.* and from git-tracked files.
+4) Keep only VAULT_ADDR, VAULT_TOKEN, VAULT_KV_MOUNT, and VAULT_PATH_* in PM2 env.
+
+Created module:
+  /perform1/srv/work/myid-app/fixpack/vault-secrets-loader.mjs
+
+Next: Run Agent02 again to ensure no hardcoded secrets remain.

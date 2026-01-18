@@ -65,3 +65,15 @@ hsm-config.json
 
 # OS
 Thumbs.db
+
+# secrets
+.env
+.env.local
+backend/.env
+backend/.env.*
+
+# secrets
+.env
+.env.local
+backend/.env
+backend/.env.*

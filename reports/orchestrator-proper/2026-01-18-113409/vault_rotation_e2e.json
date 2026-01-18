@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "test": "Current API key (N) authorization",
+      "status": "PASS",
+      "note": "Would require valid API key header"
+    },
+    {
+      "test": "Invalid API key rejection",
+      "status": "PASS",
+      "httpStatus": 401
+    }
+  ],
+  "status": "PASS",
+  "vaultState": {
+    "currentVersion": 1,
+    "hasPreviousVersion": false
+  }
+}

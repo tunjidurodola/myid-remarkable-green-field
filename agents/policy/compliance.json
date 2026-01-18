@@ -1,0 +1,42 @@
+{
+  "project": "myid.africa",
+  "node_reference": "v20.11.0",
+  "vault": {
+    "kv_mount": "kv-v2",
+    "required_paths": [
+      "myid/pwa/jwt",
+      "myid/pwa/api",
+      "myid/hsm/jwt",
+      "myid/hsm/api"
+    ]
+  },
+  "services": {
+    "pwa_server": { "base_url": "http://127.0.0.1:9495" },
+    "myid_hsm":   { "base_url": "http://127.0.0.1:6321" }
+  },
+  "legal": {
+    "terms_path": "/legal/terms",
+    "privacy_path": "/legal/privacy"
+  },
+  "health": {
+    "pwa_health": "/api/health",
+    "hsm_health": "/health"
+  },
+  "pm2": {
+    "required_processes": [
+      "myid-pwa",
+      "myid-pwa-server",
+      "myid-hsm"
+    ]
+  },
+  "security": {
+    "disallow_hardcoded_secrets_regex": "(JWT_SECRET\\s*[:=]|API_KEY\\s*[:=])",
+    "npm_audit_max_severity": "high"
+  },
+  "hsm": {
+    "wrappers_required": [
+      "csadm-remote",
+      "p11tool2-remote"
+    ]
+  }
+}
