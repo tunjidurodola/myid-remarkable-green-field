@@ -48,18 +48,103 @@ app.use((req, res, next) => {
 });
 
 // API Key authentication middleware (for HSM endpoints)
-const authenticateAPIKey = (req, res, next) => {
-  const apiKey = req.headers['x-api-key'];
-  if (!apiKey || apiKey !== process.env.API_KEY) {
-    return res.status(401).json({ error: 'Unauthorized' });
+/**
+ * Validate API key with N vs N-1 rotation support
+ * Allows both current (N) and previous (N-1) API keys with 24h grace period
+ */
+function validateAPIKeyWithRotation(providedKey, currentKey, previousKey, rotationTimestamp) {
+  if (!providedKey) {
+    return { valid: false, deprecated: false };
   }
+
+  // Check current key (N)
+  if (providedKey === currentKey) {
+    return { valid: true, deprecated: false };
+  }
+
+  // Check previous key (N-1) with grace period
+  if (previousKey && providedKey === previousKey) {
+    const gracePeriodMs = 24 * 60 * 60 * 1000; // 24 hours
+    const rotationTime = rotationTimestamp ? new Date(rotationTimestamp).getTime() : 0;
+    const now = Date.now();
+
+    if (now - rotationTime <= gracePeriodMs) {
+      return { valid: true, deprecated: true };
+    } else {
+      // Grace period expired
+      return { valid: false, deprecated: true, expired: true };
+    }
+  }
+
+  return { valid: false, deprecated: false };
+}
+
+const authenticateAPIKey = (req, res, next) => {
+  const providedKey = req.headers['x-api-key'];
+  const currentKey = process.env.API_KEY;
+  const previousKey = process.env.API_KEY_PREVIOUS;
+  const rotationTimestamp = process.env.API_KEY_ROTATION_TIMESTAMP;
+
+  // Fail closed: if no current key configured, reject
+  if (!currentKey) {
+    console.error('[AUTH] API_KEY not configured - failing closed');
+    return res.status(500).json({ error: 'Authentication system misconfigured' });
+  }
+
+  const validation = validateAPIKeyWithRotation(
+    providedKey,
+    currentKey,
+    previousKey,
+    rotationTimestamp
+  );
+
+  if (!validation.valid) {
+    if (validation.expired) {
+      console.warn('[AUTH] Deprecated API key used after grace period expired');
+      return res.status(401).json({
+        error: 'API key expired',
+        message: 'Your API key has been rotated. Please update to the new key.'
+      });
+    }
+    return res.status(401).json({ error: 'Invalid API key' });
+  }
+
+  // Warn about deprecated key usage
+  if (validation.deprecated) {
+    console.warn('[AUTH] Deprecated API key (N-1) used - grace period active');
+    res.setHeader('X-API-Key-Deprecated', 'true');
+    res.setHeader('Warning', '299 - "API key deprecated. Please rotate to new key. Grace period ends in 24h."');
+  }
+
   next();
 };
 
 // ==================== HEALTH CHECK ENDPOINTS ====================
 
-// Basic health check
+// Basic health check (root level)
 app.get('/health', async (req, res) => {
+  const dbHealth = await db.healthCheck();
+  const redisHealth = await redis.healthCheck();
+
+  const allHealthy = dbHealth.healthy && redisHealth.healthy;
+
+  res.status(allHealthy ? 200 : 503).json({
+    status: allHealthy ? 'ok' : 'degraded',
+    timestamp: new Date().toISOString(),
+    services: {
+      database: dbHealth,
+      redis: redisHealth,
+      hsm: {
+        host: process.env.HSM_HOST,
+        slot: process.env.HSM_SLOT,
+        label: process.env.HSM_LABEL,
+      },
+    },
+  });
+});
+
+// API-level health check (mirrors /health for consistency)
+app.get('/api/health', async (req, res) => {
   const dbHealth = await db.healthCheck();
   const redisHealth = await redis.healthCheck();
 
