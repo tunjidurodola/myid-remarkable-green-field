@@ -10,6 +10,7 @@ dotenv.config();
 // Import database and redis modules
 import db from './lib/db.mjs';
 import redis from './lib/redis.mjs';
+import { getAPIKeyVersions } from './lib/secrets.mjs';
 
 // Import route modules
 import authRoutes from './routes/auth.mjs';
@@ -48,75 +49,117 @@ app.use((req, res, next) => {
 });
 
 // API Key authentication middleware (for HSM endpoints)
+// Uses Vault kv-v2 versioned secrets for N vs N-1 rotation
+
+// Cache API key versions (refresh every 5 minutes)
+let _apiKeyCache = null;
+let _apiKeyCacheTime = 0;
+const API_KEY_CACHE_MS = 5 * 60 * 1000; // 5 minutes
+
+async function getAPIKeys() {
+  const now = Date.now();
+  if (_apiKeyCache && (now - _apiKeyCacheTime < API_KEY_CACHE_MS)) {
+    return _apiKeyCache;
+  }
+
+  _apiKeyCache = await getAPIKeyVersions();
+  _apiKeyCacheTime = now;
+  return _apiKeyCache;
+}
+
 /**
- * Validate API key with N vs N-1 rotation support
- * Allows both current (N) and previous (N-1) API keys with 24h grace period
+ * Constant-time string comparison to prevent timing attacks
  */
-function validateAPIKeyWithRotation(providedKey, currentKey, previousKey, rotationTimestamp) {
+function constantTimeCompare(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string') {
+    return false;
+  }
+  if (a.length !== b.length) {
+    return false;
+  }
+  return crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
+
+/**
+ * Validate API key with Vault kv-v2 versioned rotation (N vs N-1)
+ * Supports 24h grace period based on created_time metadata
+ */
+async function validateAPIKeyWithVaultRotation(providedKey) {
   if (!providedKey) {
     return { valid: false, deprecated: false };
   }
 
+  const keys = await getAPIKeys();
+
   // Check current key (N)
-  if (providedKey === currentKey) {
-    return { valid: true, deprecated: false };
+  if (constantTimeCompare(providedKey, keys.currentKey)) {
+    return {
+      valid: true,
+      deprecated: false,
+      version: keys.currentVersion
+    };
   }
 
-  // Check previous key (N-1) with grace period
-  if (previousKey && providedKey === previousKey) {
+  // Check previous key (N-1) with 24h grace period
+  if (keys.previousKey && constantTimeCompare(providedKey, keys.previousKey)) {
     const gracePeriodMs = 24 * 60 * 60 * 1000; // 24 hours
-    const rotationTime = rotationTimestamp ? new Date(rotationTimestamp).getTime() : 0;
+    const createdTime = keys.previousMetadata?.created_time
+      ? new Date(keys.previousMetadata.created_time).getTime()
+      : 0;
     const now = Date.now();
 
-    if (now - rotationTime <= gracePeriodMs) {
-      return { valid: true, deprecated: true };
+    if (createdTime && (now - createdTime <= gracePeriodMs)) {
+      return {
+        valid: true,
+        deprecated: true,
+        version: keys.previousVersion,
+        graceExpiry: new Date(createdTime + gracePeriodMs).toISOString()
+      };
     } else {
-      // Grace period expired
-      return { valid: false, deprecated: true, expired: true };
+      // Grace period expired or no created_time
+      return {
+        valid: false,
+        deprecated: true,
+        expired: true,
+        version: keys.previousVersion
+      };
     }
   }
 
   return { valid: false, deprecated: false };
 }
 
-const authenticateAPIKey = (req, res, next) => {
+const authenticateAPIKey = async (req, res, next) => {
   const providedKey = req.headers['x-api-key'];
-  const currentKey = process.env.API_KEY;
-  const previousKey = process.env.API_KEY_PREVIOUS;
-  const rotationTimestamp = process.env.API_KEY_ROTATION_TIMESTAMP;
 
-  // Fail closed: if no current key configured, reject
-  if (!currentKey) {
-    console.error('[AUTH] API_KEY not configured - failing closed');
-    return res.status(500).json({ error: 'Authentication system misconfigured' });
-  }
+  try {
+    const validation = await validateAPIKeyWithVaultRotation(providedKey);
 
-  const validation = validateAPIKeyWithRotation(
-    providedKey,
-    currentKey,
-    previousKey,
-    rotationTimestamp
-  );
-
-  if (!validation.valid) {
-    if (validation.expired) {
-      console.warn('[AUTH] Deprecated API key used after grace period expired');
-      return res.status(401).json({
-        error: 'API key expired',
-        message: 'Your API key has been rotated. Please update to the new key.'
-      });
+    if (!validation.valid) {
+      if (validation.expired) {
+        console.warn('[AUTH] Deprecated API key used after grace period expired');
+        return res.status(401).json({
+          error: 'API key expired',
+          message: 'Your API key has been rotated. Please update to the new key.'
+        });
+      }
+      console.warn('[AUTH] Invalid API key provided');
+      return res.status(401).json({ error: 'Invalid API key' });
     }
-    return res.status(401).json({ error: 'Invalid API key' });
-  }
 
-  // Warn about deprecated key usage
-  if (validation.deprecated) {
-    console.warn('[AUTH] Deprecated API key (N-1) used - grace period active');
-    res.setHeader('X-API-Key-Deprecated', 'true');
-    res.setHeader('Warning', '299 - "API key deprecated. Please rotate to new key. Grace period ends in 24h."');
-  }
+    // Warn about deprecated key usage
+    if (validation.deprecated) {
+      console.warn(`[AUTH] Deprecated API key (N-1 version ${validation.version}) used - grace period active until ${validation.graceExpiry}`);
+      res.setHeader('X-API-Key-Deprecated', 'true');
+      res.setHeader('X-Deprecated-Key-Version', String(validation.version));
+      res.setHeader('Warning', `299 - "API key deprecated. Please rotate to new key. Grace period ends ${validation.graceExpiry}"`);
+    }
 
-  next();
+    next();
+  } catch (error) {
+    console.error('[AUTH] API key validation failed:', error.message);
+    return res.status(500).json({ error: 'Authentication system error' });
+  }
 };
 
 // ==================== HEALTH CHECK ENDPOINTS ====================
