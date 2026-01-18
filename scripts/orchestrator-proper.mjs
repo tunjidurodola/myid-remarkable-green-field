@@ -180,7 +180,7 @@ async function runPhase1B() {
 
   RESULTS.phases.phase1b = results;
   log('PHASE1B', `Completed: ${results.status}`);
-  return results.status !== 'FAIL';
+  return results.status === 'PASS';
 }
 
 // PHASE 1C: HSM Signing Gate
@@ -262,16 +262,27 @@ async function main() {
   await ensureDir(REPORT_DIR);
   log('MAIN', `Report directory: ${REPORT_DIR}`);
 
-  try {
-    // Run all phases
-    const phase0 = await runPhase0();
-    const phase1a = await runPhase1A();
-    const phase1b = await runPhase1B();
-    const phase1c = await runPhase1C();
-    const phase2 = await runPhase2();
+  const phases = [
+    { name: 'PHASE0 (Prechecks)', fn: runPhase0 },
+    { name: 'PHASE1A (Runtime Secrets)', fn: runPhase1A },
+    { name: 'PHASE1B (Vault Rotation)', fn: runPhase1B },
+    { name: 'PHASE1C (HSM Signing)', fn: runPhase1C },
+    { name: 'PHASE2 (Crypto Gates)', fn: runPhase2 },
+  ];
 
-    // Determine overall status
-    RESULTS.overallStatus = (phase0 && phase1a && phase1b && phase1c && phase2) ? 'PASS' : 'FAIL';
+  let overallStatus = 'PASS';
+
+  try {
+    for (const phase of phases) {
+      const success = await phase.fn();
+      if (!success) {
+        overallStatus = 'FAIL';
+        log('MAIN', `Phase ${phase.name} failed. Halting execution.`, 'ERROR');
+        break; // Stop execution on first failure
+      }
+    }
+
+    RESULTS.overallStatus = overallStatus;
 
     // Write summary
     await writeJSON(path.join(REPORT_DIR, 'SUMMARY.json'), RESULTS);
@@ -284,14 +295,15 @@ async function main() {
 
 ## Phase Results
 
-- **PHASE 0 (Prechecks)**: ${RESULTS.phases.phase0?.status || 'N/A'}
-- **PHASE 1A (Runtime Secrets)**: ${RESULTS.phases.phase1a?.status || 'N/A'}
-- **PHASE 1B (Vault Rotation)**: ${RESULTS.phases.phase1b?.status || 'N/A'}
-- **PHASE 1C (HSM Signing)**: ${RESULTS.phases.phase1c?.status || 'N/A'}
-- **PHASE 2 (Crypto Gates)**: ${RESULTS.phases.phase2?.status || 'N/A'}
+- **PHASE 0 (Prechecks)**: ${RESULTS.phases.phase0?.status || 'SKIPPED'}
+- **PHASE 1A (Runtime Secrets)**: ${RESULTS.phases.phase1a?.status || 'SKIPPED'}
+- **PHASE 1B (Vault Rotation)**: ${RESULTS.phases.phase1b?.status || 'SKIPPED'}
+- **PHASE 1C (HSM Signing)**: ${RESULTS.phases.phase1c?.status || 'SKIPPED'}
+- **PHASE 2 (Crypto Gates)**: ${RESULTS.phases.phase2?.status || 'SKIPPED'}
 
 ## Evidence Files
 
+- SUMMARY.json
 - runtime_secrets_scan.json
 - vault_rotation_e2e.json
 - hsm_signing_e2e.json
@@ -313,6 +325,9 @@ Report directory: ${REPORT_DIR}
     process.exit(RESULTS.overallStatus === 'PASS' ? 0 : 1);
   } catch (err) {
     log('MAIN', `Fatal error: ${err.message}`, 'ERROR');
+    RESULTS.overallStatus = 'ERROR';
+    RESULTS.error = err.message;
+    await writeJSON(path.join(REPORT_DIR, 'SUMMARY.json'), RESULTS);
     console.error(err);
     process.exit(1);
   }

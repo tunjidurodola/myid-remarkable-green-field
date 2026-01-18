@@ -55,45 +55,27 @@ async function vaultReadMetadata({ mount, path }) {
 /**
  * Read API key with N and N-1 version support for rotation
  * Returns both current and previous API keys with metadata
+ *
+ * Schema: current_key, previous_key (not versioned reads, but from single secret)
  */
 export async function getAPIKeyVersions() {
   const mount = process.env.VAULT_KV_MOUNT || 'kv-v2';
-  const apiPath = process.env.VAULT_PATH_HSM_API || 'myid/hsm/api';
+  const apiPath = process.env.VAULT_PATH_PWA_API || 'myid/pwa/api';
 
-  // Read metadata to get current version
-  const metadata = await vaultReadMetadata({ mount, path: apiPath });
-  const currentVersion = metadata.data.current_version;
+  // Read current secret (not versioned)
+  const secret = await vaultReadKv2({ mount, path: apiPath });
 
-  if (!currentVersion || currentVersion < 1) {
-    throw new Error(`Invalid current_version for ${mount}/${apiPath}`);
-  }
-
-  // Read current version (N)
-  const current = await vaultReadKv2Versioned({ mount, path: apiPath, version: currentVersion });
-  const currentKey = must(`vault:${mount}/${apiPath}[v${currentVersion}] api_key`, current.data.api_key);
-
-  // Read previous version (N-1) if it exists
-  let previousKey = null;
-  let previousMetadata = null;
-
-  if (currentVersion > 1) {
-    try {
-      const previous = await vaultReadKv2Versioned({ mount, path: apiPath, version: currentVersion - 1 });
-      previousKey = previous.data.api_key || null;
-      previousMetadata = previous.metadata;
-    } catch (err) {
-      // N-1 may not exist or be destroyed, which is OK
-      console.warn(`[Vault] Could not read N-1 version: ${err.message}`);
-    }
-  }
+  const currentKey = must(`vault:${mount}/${apiPath} current_key`, secret.current_key);
+  const previousKey = secret.previous_key === 'n/a' ? null : secret.previous_key;
 
   return {
     currentKey,
-    currentVersion,
-    currentMetadata: current.metadata,
+    currentVersion: null, // Not using versioned approach
+    currentMetadata: null,
     previousKey,
-    previousVersion: currentVersion > 1 ? currentVersion - 1 : null,
-    previousMetadata
+    previousVersion: null,
+    previousMetadata: null,
+    rotatedAt: secret.rotated_at || null
   };
 }
 
