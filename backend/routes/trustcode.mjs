@@ -5,6 +5,7 @@
  */
 
 import { Router } from 'express';
+import { getBackendSecrets, getAPIKeyVersions } from "../lib/secrets.mjs";
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import { blake3 } from '@noble/hashes/blake3.js';
@@ -15,8 +16,7 @@ import redis from '../lib/redis.mjs';
 const router = Router();
 
 // JWT configuration
-const JWT_SECRET = process.env.JWT_SECRET || 'myid-jwt-secret-key-change-in-production';
-
+const { jwt_secret: JWT_SECRET } = await getBackendSecrets();
 /**
  * JWT authentication middleware
  */
@@ -40,13 +40,35 @@ function authenticateJWT(req, res, next) {
 
 /**
  * API Key authentication middleware
+ * Uses Vault kv-v2 versioned secrets (N vs N-1)
  */
-function authenticateAPIKey(req, res, next) {
-  const apiKey = req.headers['x-api-key'];
-  if (!apiKey || apiKey !== process.env.API_KEY) {
+async function authenticateAPIKey(req, res, next) {
+  const providedKey = req.headers['x-api-key'];
+
+  if (!providedKey) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
-  next();
+
+  try {
+    const keys = await getAPIKeyVersions();
+    const isCurrentKey = crypto.timingSafeEqual(
+      Buffer.from(providedKey),
+      Buffer.from(keys.currentKey)
+    );
+    const isPreviousKey = keys.previousKey && crypto.timingSafeEqual(
+      Buffer.from(providedKey),
+      Buffer.from(keys.previousKey)
+    );
+
+    if (!isCurrentKey && !isPreviousKey) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    next();
+  } catch (error) {
+    console.error('[TrustCode] API key validation error:', error);
+    return res.status(500).json({ error: 'Authentication error' });
+  }
 }
 
 /**
