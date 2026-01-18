@@ -28,6 +28,7 @@
     "test:debug": "playwright test --debug",
     "audit:routes": "node scripts/audit-routes.mjs",
     "generate:routes": "node scripts/generate-all-routes.mjs",
+    "qa:orchestrator": "node scripts/orchestrator-proper.mjs",
     "clean": "rm -rf .next node_modules/.cache",
     "postinstall": "echo 'Installation complete. Run npm run dev to start development server.'"
   },
