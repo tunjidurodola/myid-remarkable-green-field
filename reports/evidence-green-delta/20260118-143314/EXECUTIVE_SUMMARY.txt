@@ -1,0 +1,160 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                    DELTA RECONCILIATION - EXECUTIVE SUMMARY                   ║
+║                              myID.africa - nv2                                ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+Date: 2026-01-18 14:43:25 +04:00
+Report: /perform1/srv/work/myid-app/reports/evidence-green-delta/20260118-143314/
+Status: ✅ GREEN - All audit blockers resolved
+
+═══════════════════════════════════════════════════════════════════════════════
+
+RECONCILIATION FINDINGS
+───────────────────────────────────────────────────────────────────────────────
+
+❌ RED FLAG 1: Environment Variable API Key Rotation
+   Problem:   Used process.env.API_KEY and process.env.API_KEY_PREVIOUS
+   Location:  backend/server.mjs, backend/routes/{mastercode,trustcode}.mjs
+   Status:    FIXED (Commit 7eb4b9a)
+
+❌ RED FLAG 2: HSM Signing Stub Methods
+   Problem:   Called undefined methods (findP11Tool, signWithP11Tool, signWithGraphenePK11)
+   Location:  backend/lib/hsm-signer.mjs
+   Status:    FIXED (Commit dc35394)
+
+✅ VERIFIED: eIDAS2 JWS Verification
+   Implementation: Real jose.jwtVerify() with importJWK()
+   Location:  backend/lib/eidas2.mjs:402-434
+   Status:    CONFIRMED REAL
+
+✅ VERIFIED: W3C VC Verification
+   Implementation: Real jose.compactVerify()
+   Location:  backend/lib/verifiers.mjs:153-324
+   Status:    CONFIRMED REAL
+
+✅ VERIFIED: ICAO DTC Verification
+   Implementation: Real OpenSSL CMS verify via child_process
+   Location:  backend/lib/verifiers.mjs:330-462
+   Status:    CONFIRMED REAL
+
+✅ VERIFIED: ISO 18013-5 Verification
+   Implementation: Real node-forge COSE_Sign1
+   Location:  backend/lib/verifiers.mjs:20-147
+   Status:    CONFIRMED REAL
+
+═══════════════════════════════════════════════════════════════════════════════
+
+FIXES IMPLEMENTED
+───────────────────────────────────────────────────────────────────────────────
+
+A) Vault kv-v2 Versioned Rotation (N vs N-1)
+   ✓ Created getAPIKeyVersions() in backend/lib/secrets.mjs
+   ✓ Reads Vault metadata → current_version = N
+   ✓ Reads version N data → currentKey
+   ✓ Reads version N-1 data → previousKey
+   ✓ Uses metadata.created_time for 24h grace period
+   ✓ Constant-time comparison (crypto.timingSafeEqual)
+   ✓ Deprecation headers: X-API-Key-Deprecated, X-Deprecated-Key-Version
+   ✓ Updated: server.mjs, mastercode.mjs, trustcode.mjs
+
+B) Real HSM Signing (p11tool2-remote)
+   ✓ Created backend/lib/hsm-remote.mjs
+   ✓ Implemented signWithHSM() using p11tool2-remote
+   ✓ Implemented createJWSWithHSM() for JWS tokens
+   ✓ Implemented listHSMObjects() for slot enumeration
+   ✓ Implemented getHSMCertificate() for cert retrieval
+   ✓ Updated hsm-signer.mjs to use real signing
+   ✓ Private keys never leave HSM (slot 0, 172.27.127.129:3001)
+
+C) Evidence Pack
+   ✓ vault_rotation_proof.json
+   ✓ eidas2_jws_verify_proof.json
+   ✓ hsm_signing_proof.json
+   ✓ env_leak_scan.txt (CLEAN - no env secret leaks)
+   ✓ pm2_status.txt
+   ✓ health.json
+   ✓ DELTA_RECONCILIATION.md (full report)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+GIT COMMITS
+───────────────────────────────────────────────────────────────────────────────
+
+7eb4b9a vault: enforce kv-v2 versioned rotation N/N-1 (no env secrets)
+        - backend/lib/secrets.mjs (+98 lines)
+        - backend/server.mjs (+113, -57 lines)
+        - backend/routes/mastercode.mjs (+28 lines)
+        - backend/routes/trustcode.mjs (+28 lines)
+
+dc35394 hsm: implement real remote signing path (no pkcs11 stub)
+        - backend/lib/hsm-remote.mjs (+231 lines, new)
+        - backend/lib/hsm-signer.mjs (+4, -15 lines)
+
+71683a2 evidence: add delta proof pack
+        - 7 evidence files documenting all changes
+
+═══════════════════════════════════════════════════════════════════════════════
+
+SERVICE STATUS
+───────────────────────────────────────────────────────────────────────────────
+
+myid-hsm (6321):
+  Status:   ✅ ONLINE (reloaded)
+  Health:   {"status":"ok"}
+  Database: ✅ healthy (myid_africa)
+  Redis:    ✅ healthy (1ms latency)
+  HSM:      {"host":"172.27.127.129"}
+
+myid-pwa (6230):
+  Status:   ✅ ONLINE
+  Health:   Next.js UI serving
+
+═══════════════════════════════════════════════════════════════════════════════
+
+COMPLIANCE CHECKLIST
+───────────────────────────────────────────────────────────────────────────────
+
+[✓] No env vars for secret values (API_KEY, JWT_SECRET, etc.)
+[✓] Vault kv-v2 versioned reads (N and N-1)
+[✓] 24h grace period using Vault metadata.created_time
+[✓] Constant-time comparison (prevents timing attacks)
+[✓] N-1 accepted within grace period (no service denial)
+[✓] Deprecation headers on N-1 usage
+[✓] Real HSM signing (p11tool2-remote)
+[✓] Private keys stay in HSM
+[✓] Real eIDAS2 JWS verification (jose)
+[✓] Real W3C VC verification (jose)
+[✓] Real ICAO DTC verification (OpenSSL)
+[✓] Real ISO 18013-5 verification (node-forge)
+[✓] PM2 configs contain no secrets
+[✓] Runtime code has no env secret leaks
+[✓] Services reloaded and healthy
+
+═══════════════════════════════════════════════════════════════════════════════
+
+EVIDENCE FILES
+───────────────────────────────────────────────────────────────────────────────
+
+Location: /perform1/srv/work/myid-app/reports/evidence-green-delta/20260118-143314/
+
+DELTA_RECONCILIATION.md       Full reconciliation report
+EXECUTIVE_SUMMARY.txt         This file
+vault_rotation_proof.json     Vault N/N-1 rotation proof
+eidas2_jws_verify_proof.json  eIDAS2 real verification proof
+hsm_signing_proof.json        HSM p11tool2 integration proof
+env_leak_scan.txt             Runtime env secret scan (CLEAN)
+pm2_status.txt                PM2 service status
+health.json                   Health endpoint responses
+
+═══════════════════════════════════════════════════════════════════════════════
+
+FINAL STATUS: ✅ GREEN
+───────────────────────────────────────────────────────────────────────────────
+
+All audit blockers eliminated.
+All claims verified against actual code.
+All services healthy and operational.
+
+Delta reconciliation: COMPLETE
+
+═══════════════════════════════════════════════════════════════════════════════
