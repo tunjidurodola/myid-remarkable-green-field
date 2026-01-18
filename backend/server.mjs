@@ -152,7 +152,10 @@ const authenticateAPIKey = async (req, res, next) => {
           message: 'Your API key has been rotated. Please update to the new key.'
         });
       }
-      console.warn('[AUTH] Invalid API key provided');
+      // Only log if key was provided but invalid (not missing header)
+      if (providedKey) {
+        console.warn('[AUTH] Invalid API key provided');
+      }
       return res.status(401).json({ error: 'Invalid API key' });
     }
 
