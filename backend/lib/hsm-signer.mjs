@@ -11,6 +11,10 @@
  */
 
 import crypto from 'crypto';
+import { execFile } from 'child_process';
+import { promisify } from 'util';
+
+const execFileAsync = promisify(execFile);
 import forge from 'node-forge';
 
 // HSM Configuration from environment
@@ -189,12 +193,23 @@ export class HSMSigner {
       // In production, this would use PKCS#11 to sign with HSM key:
       // const signature = this.session.createSign(mechanism, key).once(hash);
 
-      // For demo, create a simulated signature
-      // This represents the HSM signing operation
-      const signature = crypto
-        .createHmac('sha256', `hsm-key:${keyLabel}:${HSM_CONFIG.slot}`)
-        .update(hash)
-        .digest();
+      // Real PKCS#11 signing via p11tool2-remote or graphene-pk11
+    // Check if we have p11tool2-remote for remote HSM signing
+    let signature;
+
+    try {
+      const p11tool = await this.findP11Tool();
+
+      if (p11tool) {
+        // Use p11tool2-remote for actual HSM signing
+        signature = await this.signWithP11Tool(p11tool, hash, keyLabel);
+      } else {
+        // Fallback: Use graphene-pk11 for local PKCS#11
+        signature = await this.signWithGraphenePK11(hash, keyLabel);
+      }
+    } catch (pkcs11Error) {
+      throw new Error(`HSM signing failed: ${pkcs11Error.message}. Ensure HSM is accessible and key '${keyLabel}' exists in slot ${HSM_CONFIG.slot}`);
+    }
 
       return {
         signature: signature.toString('base64'),
