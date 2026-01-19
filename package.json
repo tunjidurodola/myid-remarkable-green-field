@@ -30,6 +30,9 @@
     "generate:routes": "node scripts/generate-all-routes.mjs",
     "qa:hsm-profile": "node scripts/qa-hsm-profile.mjs",
     "qa:orchestrator": "npm run qa:hsm-profile && node scripts/orchestrator-proper.mjs",
+    "qa:functional": "node scripts/qa-functional.mjs",
+    "qa:payload-lab": "node lab/scripts/run-lab.mjs",
+    "docs:sync:wikijs": "node scripts/wikijs/sync-partner-docs.mjs",
     "clean": "rm -rf .next node_modules/.cache",
     "postinstall": "echo 'Installation complete. Run npm run dev to start development server.'"
   },

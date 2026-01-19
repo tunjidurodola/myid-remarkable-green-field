@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Synthetic Payload Lab Policy Configuration for myID.africa",
+  "version": "1.0.0",
+
+  "issuers": {
+    "primary": "https://iss.trustvault.eu",
+    "backup": "https://iss.trustvault.eu/backup"
+  },
+
+  "audiences": {
+    "primary": "https://aud.pocket.one",
+    "mobile": "https://aud.pocket.one/mobile",
+    "web": "https://aud.pocket.one/web"
+  },
+
+  "ocsp": {
+    "primary": "https://ocsp.trustvault.eu",
+    "responder": "https://ocsp.trustvault.eu/responder"
+  },
+
+  "claims": {
+    "required": ["tc", "mc"],
+    "optional": ["sub", "iat", "exp", "nbf", "jti"],
+    "trustcode_namespace": "pocketone:tc",
+    "mastercode_namespace": "pocketone:mc"
+  },
+
+  "hsm": {
+    "slot_mapping": {
+      "mdoc": "0004",
+      "sdjwt": "0002",
+      "w3c_vc": "0005",
+      "dtc": "0003",
+      "ndef": "0006",
+      "ble_pace": "0009",
+      "qes": "0001",
+      "root_kek": "0000"
+    },
+    "enabled_slots": ["0000", "0001", "0002", "0003", "0004", "0005", "0006", "0007", "0008", "0009"],
+    "default_slot": "0000",
+    "key_labels": {
+      "mdoc_issuer": "mdoc_issuer_key",
+      "sdjwt_issuer": "sdjwt_issuer_key",
+      "w3c_issuer": "w3c_issuer_key",
+      "dtc_issuer": "dtc_issuer_key",
+      "ndef_signer": "ndef_signer_key",
+      "ble_pace_key": "ble_pace_key"
+    }
+  },
+
+  "vault": {
+    "mount": "c3-hsm",
+    "kv_version": 2,
+    "paths": {
+      "hsm_config": "c3-hsm/myid-hsm/config",
+      "slot_pins": "c3-hsm/slot_{SLOT}",
+      "lab_config": "c3-hsm/lab/config",
+      "lab_test_keys": "c3-hsm/lab/test-keys",
+      "api_keys": "c3-hsm/api-keys",
+      "jwt_secrets": "c3-hsm/jwt-secrets"
+    },
+    "required_fields": {
+      "hsm_config": ["hsm_host", "enabled_slots", "default_slot", "p11tool2_cmd", "csadm_cmd"],
+      "slot_pins": ["so_pin", "usr_pin", "km_pin"],
+      "lab_config": ["enabled", "max_iterations", "report_retention_days"],
+      "lab_test_keys": ["test_jwk_public", "test_did_key"]
+    }
+  },
+
+  "key_encryption": {
+    "kek_slot": "0000",
+    "dek_rotation_days": 90,
+    "revocation_list_path": "c3-hsm/lab/revoked-keys",
+    "rotation_metadata_path": "c3-hsm/lab/key-rotation-log"
+  },
+
+  "credential_families": {
+    "iso18013_5": {
+      "enabled": true,
+      "namespace": "org.iso.18013.5.1",
+      "issuer": "https://iss.trustvault.eu",
+      "slot": "0004",
+      "cbor_canonicalization": true,
+      "cose_sign1_required": true
+    },
+    "eidas2_sdjwt": {
+      "enabled": true,
+      "namespace": "eu.europa.ec.eudi.pid.1",
+      "issuer": "https://iss.trustvault.eu",
+      "audience": "https://aud.pocket.one",
+      "slot": "0002",
+      "disclosure_required": true,
+      "sd_alg": "sha-256"
+    },
+    "w3c_did_vc": {
+      "enabled": true,
+      "did_methods": ["did:key", "did:web"],
+      "did_web_domain": "iss.trustvault.eu",
+      "issuer": "https://iss.trustvault.eu",
+      "slot": "0005",
+      "proof_type": "JwtProof2020"
+    },
+    "icao_dtc": {
+      "enabled": true,
+      "issuer": "https://iss.trustvault.eu",
+      "slot": "0003",
+      "cms_signed_data": true,
+      "certificate_chain_required": true,
+      "openssl_verification": true
+    },
+    "nfc_ndef": {
+      "enabled": true,
+      "slot": "0006",
+      "record_types": ["URI", "TEXT", "MIME"],
+      "engagement_uri_scheme": "myid://",
+      "deep_link_base": "https://aud.pocket.one/engage"
+    },
+    "ble_pace": {
+      "enabled": true,
+      "slot": "0009",
+      "ble_gatt_scaffolding": true,
+      "pace_protocol_transcript": true,
+      "full_implementation": false,
+      "note": "Scaffolding only - not full PACE chip authentication"
+    }
+  },
+
+  "datastore_compliance": {
+    "postgresql": {
+      "inspect": true,
+      "report_path": "datastore_inventory_pg.md",
+      "required_tables": ["users", "credentials", "audit_log"],
+      "pii_detection": true,
+      "tokenization_check": true
+    },
+    "redis": {
+      "inspect": true,
+      "report_path": "datastore_inventory_redis.md",
+      "key_prefixes": ["session:", "cache:", "challenge:", "ratelimit:"],
+      "ttl_analysis": true
+    }
+  },
+
+  "test_vectors": {
+    "tc_values": ["TC-TEST-001", "TC-TEST-002", "TC-TEST-003"],
+    "mc_values": ["MC-MASTER-001", "MC-MASTER-002"],
+    "test_subjects": ["did:key:z6MkTest123", "did:web:iss.trustvault.eu:user:test"],
+    "test_dids": {
+      "did_key": "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+      "did_web": "did:web:iss.trustvault.eu:users:alice"
+    }
+  },
+
+  "orchestrator": {
+    "max_iterations": 6,
+    "halt_on_fail": false,
+    "run_existing_qa_first": true,
+    "existing_qa_gates": [
+      "qa:hsm-profile",
+      "qa:walletpack",
+      "qa:orchestrator"
+    ],
+    "auto_provision_vault": true,
+    "report_dir": "reports/payload-lab",
+    "timestamp_format": "YYYYMMDD-HHMMSS"
+  },
+
+  "compliance": {
+    "no_hardcoded_secrets": true,
+    "no_secrets_in_logs": true,
+    "redact_tokens_in_evidence": true,
+    "redact_keys_in_evidence": true,
+    "fail_closed_architecture": true
+  }
+}
