@@ -23,6 +23,7 @@ import consentRoutes from './routes/consent.mjs';
 import credentialsRoutes from './routes/credentials.mjs';
 import qesRoutes from './routes/qes.mjs';
 import hsmAdminRoutes from './routes/hsm-admin.mjs';
+import iotaRoutes from './routes/iota.mjs';
 
 // Import HSM modules for health checks
 import { hsmSigner } from './lib/hsm-signer.mjs';
@@ -31,13 +32,17 @@ import { hsmSigner } from './lib/hsm-signer.mjs';
 import { loadMyidHsmConfig, loadSlotPins } from './lib/hsm-vault.mjs';
 import { listSlots as hsmListSlots, getTokenInfo } from './lib/hsm-tools.mjs';
 import { initHsmState } from './lib/hsm-session.mjs';
+import { loadSlotConfig, slotRoutingMiddleware } from './lib/hsm-slot-routing.mjs';
 
 const app = express();
 const PORT = process.env.PORT || 6321;
 
 // Middleware
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
+  origin: [
+    'https://pwa.myid.africa',
+    process.env.CORS_ORIGIN || '*'
+  ].filter(Boolean),
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
@@ -53,6 +58,9 @@ app.use((req, res, next) => {
   });
   next();
 });
+
+// HSM slot routing middleware (attaches resolved slot to req.hsmSlot)
+app.use(slotRoutingMiddleware);
 
 // API Key authentication middleware (for HSM endpoints)
 // Uses Vault kv-v2 versioned secrets for N vs N-1 rotation
@@ -278,187 +286,22 @@ app.use('/api/qes', qesRoutes);
 // HSM Admin routes
 app.use('/api/hsm/admin', authenticateAPIKey, hsmAdminRoutes);
 
-// ==================== HSM/CRYPTO ENDPOINTS (EXISTING) ====================
+// IOTA DID routes (W3C DID with IOTA Tangle)
+app.use('/api/iota', iotaRoutes);
 
-/**
- * Generate a new key pair in the HSM
- * POST /api/crypto/keygen
- */
-app.post('/api/crypto/keygen', authenticateAPIKey, async (req, res) => {
-  try {
-    const { algorithm = 'RSA', keySize = 2048, label } = req.body;
-
-    // In production, this would interact with the HSM via PKCS#11
-    // For demo purposes, we'll generate a key pair and return the public key
-
-    // Simulated HSM key generation
-    const keyPair = crypto.generateKeyPairSync('rsa', {
-      modulusLength: keySize,
-      publicKeyEncoding: {
-        type: 'spki',
-        format: 'pem',
-      },
-      privateKeyEncoding: {
-        type: 'pkcs8',
-        format: 'pem',
-      },
+// ==================== HSM/CRYPTO ENDPOINTS ====================
+// Crypto operations are served by unified-middleware (port 9824) which has
+// real HSM-backed signing via Vault Transit or PKCS#11. These endpoints
+// return 410 Gone to redirect callers to the correct service.
+for (const path of ['/api/crypto/keygen', '/api/crypto/sign', '/api/crypto/cert/issue', '/api/crypto/qes/sign']) {
+  app.post(path, (_req, res) => {
+    res.status(410).json({
+      error: 'endpoint_removed',
+      message: 'HSM crypto operations are served by unified-middleware on port 9824',
+      replacement: `POST https://nv2.pocket.one:9824${path.replace('/api/crypto/', '/api/')}`,
     });
-
-    // In real implementation:
-    // - Private key stays in HSM (SLOT 0)
-    // - Only public key and key handle are returned
-
-    res.json({
-      success: true,
-      publicKey: keyPair.publicKey,
-      keyHandle: `hsm://${_hsmState?.config.default_slot || '0000'}/${label}`,
-      algorithm,
-      keySize,
-      timestamp: new Date().toISOString(),
-    });
-  } catch (error) {
-    console.error('Key generation error:', error);
-    res.status(500).json({ error: 'Key generation failed', details: error.message });
-  }
-});
-
-/**
- * Sign data using HSM private key
- * POST /api/crypto/sign
- */
-app.post('/api/crypto/sign', authenticateAPIKey, async (req, res) => {
-  try {
-    const { data, keyHandle, algorithm = 'SHA256' } = req.body;
-
-    if (!data) {
-      return res.status(400).json({ error: 'Data to sign is required' });
-    }
-
-    // In production, this would use the HSM to sign via PKCS#11
-    // For demo purposes, we'll create a signature
-
-    // Simulated HSM signing
-    // In real implementation, private key never leaves HSM
-    const hash = crypto.createHash(algorithm.toLowerCase()).update(data).digest();
-
-    // Mock signature (in production this comes from HSM)
-    const signature = hash.toString('base64');
-
-    res.json({
-      success: true,
-      signature,
-      algorithm,
-      keyHandle,
-      timestamp: new Date().toISOString(),
-    });
-  } catch (error) {
-    console.error('Signing error:', error);
-    res.status(500).json({ error: 'Signing failed', details: error.message });
-  }
-});
-
-/**
- * Issue a certificate signed by the CA in the HSM
- * POST /api/crypto/cert/issue
- */
-app.post('/api/crypto/cert/issue', authenticateAPIKey, async (req, res) => {
-  try {
-    const {
-      publicKey,
-      subject,
-      validityDays = 365,
-      keyUsage = ['digitalSignature', 'keyEncipherment'],
-    } = req.body;
-
-    if (!publicKey || !subject) {
-      return res.status(400).json({ error: 'Public key and subject are required' });
-    }
-
-    // In production, this would use the HSM CA key to sign the certificate
-    // For demo purposes, we'll create a self-signed certificate using node-forge
-
-    const keys = forge.pki.rsa.generateKeyPair(2048);
-    const cert = forge.pki.createCertificate();
-
-    cert.publicKey = keys.publicKey;
-    cert.serialNumber = '01';
-    cert.validity.notBefore = new Date();
-    cert.validity.notAfter = new Date();
-    cert.validity.notAfter.setDate(cert.validity.notAfter.getDate() + validityDays);
-
-    const attrs = [
-      { name: 'commonName', value: subject.commonName || 'myID.africa User' },
-      { name: 'countryName', value: subject.country || 'ZA' },
-      { name: 'organizationName', value: subject.organization || 'pocketOne' },
-    ];
-
-    cert.setSubject(attrs);
-    cert.setIssuer(attrs);
-
-    // Extensions
-    cert.setExtensions([
-      {
-        name: 'basicConstraints',
-        cA: false,
-      },
-      {
-        name: 'keyUsage',
-        digitalSignature: keyUsage.includes('digitalSignature'),
-        keyEncipherment: keyUsage.includes('keyEncipherment'),
-      },
-    ]);
-
-    // Sign the certificate (in production, HSM CA key would sign this)
-    cert.sign(keys.privateKey, forge.md.sha256.create());
-
-    const pem = forge.pki.certificateToPem(cert);
-
-    res.json({
-      success: true,
-      certificate: pem,
-      serialNumber: cert.serialNumber,
-      validityDays,
-      issuer: 'CN=pocketOne CA, O=pocketOne, C=ZA',
-      timestamp: new Date().toISOString(),
-    });
-  } catch (error) {
-    console.error('Certificate issuance error:', error);
-    res.status(500).json({ error: 'Certificate issuance failed', details: error.message });
-  }
-});
-
-/**
- * QES (Qualified Electronic Signature) endpoint
- * POST /api/crypto/qes/sign
- */
-app.post('/api/crypto/qes/sign', authenticateAPIKey, async (req, res) => {
-  try {
-    const { documentHash, certificateId, userId } = req.body;
-
-    if (!documentHash || !certificateId) {
-      return res.status(400).json({ error: 'Document hash and certificate ID are required' });
-    }
-
-    // In production, this performs QES-compliant signing with HSM
-    const signature = crypto
-      .createHash('sha256')
-      .update(documentHash + certificateId)
-      .digest('hex');
-
-    res.json({
-      success: true,
-      signature,
-      certificateId,
-      documentHash,
-      timestamp: new Date().toISOString(),
-      signatureFormat: 'CAdES-B',
-      compliance: 'eIDAS',
-    });
-  } catch (error) {
-    console.error('QES signing error:', error);
-    res.status(500).json({ error: 'QES signing failed', details: error.message });
-  }
-});
+  });
+}
 
 // ==================== HSM READINESS ENDPOINT ====================
 
@@ -531,6 +374,11 @@ async function validateHSMStartup() {
   try {
     console.log('\n[HSM] Starting slot segmentation validation...');
 
+    // Step 0: Load slot policy configuration from hsm-slots.json
+    console.log('[HSM] Loading slot policy from hsm-slots.json...');
+    const slotPolicy = loadSlotConfig();
+    console.log(`[HSM] ✓ Slot policy loaded: ${slotPolicy.enabled_slots.length} slots defined`);
+
     // Step 1: Load configuration from Vault
     console.log('[HSM] Loading configuration from Vault: c3-hsm/myid-hsm/config');
     const config = await loadMyidHsmConfig();
@@ -578,9 +426,9 @@ async function validateHSMStartup() {
     for (const slot of config.enabled_slots) {
       const pins = await loadSlotPins(slot);
       slotPins[slot] = pins;
-      // Log without PIN values
+      // Log without PIN values or admin PIN references
       const km_status = pins.km_pin ? 'present' : 'not set';
-      console.log(`[HSM] ✓ Loaded PINs for slot ${slot} (usr_pin loaded, km_pin: ${km_status})`);
+      console.log(`[HSM] ✓ Loaded PINs for slot ${slot} (usr_pin: loaded, km_pin: ${km_status})`);
     }
 
     // Step 6: Get token label for default slot
@@ -688,10 +536,6 @@ app.listen(PORT, () => {
   console.log(`    POST /api/qes/request-certificate - Request QES certificate`);
   console.log(`    GET  /api/qes/signatures        - List user's signatures`);
   console.log(`    GET  /api/qes/audit-log         - Get QES audit log`);
-  console.log(`\n  HSM/Crypto:`);
-  console.log(`    POST /api/crypto/keygen         - Generate key pair`);
-  console.log(`    POST /api/crypto/sign           - Sign data`);
-  console.log(`    POST /api/crypto/cert/issue     - Issue certificate`);
-  console.log(`    POST /api/crypto/qes/sign       - QES signing`);
+  console.log(`\n  HSM/Crypto: (served by unified-middleware :9824)`);
   console.log(`${'='.repeat(60)}\n`);
 });

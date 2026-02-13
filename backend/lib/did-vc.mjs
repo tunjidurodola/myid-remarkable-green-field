@@ -84,7 +84,7 @@ export class DIDKey {
     // Add multicodec prefix for Ed25519
     const multicodecKey = Buffer.concat([MULTICODEC.ED25519_PUB, keyBuffer]);
 
-    // Encode with base58btc (simplified - using base64url for demo)
+    // Encode with base58btc
     const encoded = MULTIBASE.BASE58_BTC + this.base58btcEncode(multicodecKey);
 
     return `did:key:${encoded}`;
@@ -357,16 +357,8 @@ export class VerifiableCredential {
     const sign = crypto.createSign('SHA256');
     sign.update(message);
 
-    try {
-      const signature = sign.sign(privateKey, 'base64');
-      proof.proofValue = signature;
-    } catch {
-      // Fallback for demo - create deterministic proof
-      proof.proofValue = crypto
-        .createHash('sha256')
-        .update(message + verificationMethod)
-        .digest('base64');
-    }
+    const signature = sign.sign(privateKey, 'base64');
+    proof.proofValue = signature;
 
     signedCredential.proof = proof;
     return signedCredential;
@@ -468,16 +460,8 @@ export class VerifiablePresentation {
     const sign = crypto.createSign('SHA256');
     sign.update(message);
 
-    try {
-      const signature = sign.sign(privateKey, 'base64');
-      proof.proofValue = signature;
-    } catch {
-      // Fallback for demo
-      proof.proofValue = crypto
-        .createHash('sha256')
-        .update(message)
-        .digest('base64');
-    }
+    const signature = sign.sign(privateKey, 'base64');
+    proof.proofValue = signature;
 
     signedPresentation.proof = proof;
     return signedPresentation;
