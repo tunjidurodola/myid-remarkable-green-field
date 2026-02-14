@@ -16,20 +16,29 @@ import { getHsmState } from './hsm-session.mjs';
 export class HSMSigner {
   /**
    * Sign data using a private key in the HSM.
-   * This operation always uses the USR role for the default slot.
+   * This operation always uses the USR role.
    *
    * @param {Buffer|string} data - The data to sign.
    * @param {Object} options - Signing options.
    * @param {string} options.keyLabel - The label of the key to use for signing.
+   * @param {string} [options.slot] - The HSM slot to use (if not provided, uses default_slot).
    * @param {string} [options.hashAlgorithm='SHA-256'] - The hashing algorithm to use.
    * @returns {Promise<Object>} The signature result.
    */
   async sign(data, options = {}) {
     const state = getHsmState();
-    const { keyLabel, hashAlgorithm = 'SHA-256' } = options;
+    const { keyLabel, slot, hashAlgorithm = 'SHA-256' } = options;
 
     if (!keyLabel) {
       throw new Error('keyLabel is required for HSM signing');
+    }
+
+    // Use provided slot or fallback to default slot
+    const targetSlot = slot || state.config.default_slot;
+
+    // Validate slot is enabled
+    if (!state.config.enabled_slots.includes(targetSlot)) {
+      throw new Error(`HSM slot ${targetSlot} is not enabled. Enabled slots: ${state.config.enabled_slots.join(', ')}`);
     }
 
     try {
@@ -44,17 +53,17 @@ export class HSMSigner {
         .update(dataBuffer)
         .digest();
 
-      // Perform signing using the default slot and USR role
+      // Perform signing using the specified slot and USR role
       const signResult = await signWithHSM(
         hash,
         keyLabel,
-        state.config.default_slot,
+        targetSlot,
         state.config.p11tool2_cmd,
         state.config.hsm_host
       );
 
       if (!signResult.success) {
-        throw new Error(`HSM signing failed: ${signResult.error}. Ensure key '${keyLabel}' exists in slot ${state.config.default_slot}`);
+        throw new Error(`HSM signing failed: ${signResult.error}. Ensure key '${keyLabel}' exists in slot ${targetSlot}`);
       }
 
       const signature = Buffer.from(signResult.signature, 'base64');
@@ -65,7 +74,7 @@ export class HSMSigner {
         algorithm: signResult.algorithm,
         hashAlgorithm,
         keyLabel,
-        slot: state.config.default_slot,
+        slot: targetSlot,
         principal: 'USR',
         timestamp: new Date().toISOString(),
       };
@@ -164,30 +173,11 @@ export class QESManager {
   }
 
   /**
-   * Request a QES certificate
+   * Request a QES certificate.
+   * Requires CA integration (EJBCA or equivalent) — not yet wired.
    */
   async requestQESCertificate(userId, identityData) {
-    const certificateId = uuidv4();
-    const serialNumber = Math.floor(Math.random() * 1000000).toString(16).toUpperCase();
-    const validFrom = new Date();
-    const validTo = new Date(validFrom.getTime() + 365 * 24 * 60 * 60 * 1000); // 1 year
-
-    const subject = `CN=${identityData.firstName} ${identityData.lastName}, E=${identityData.email}`;
-
-    // In production, this would generate a real certificate signed by the HSM CA
-    const certificate = `-----BEGIN CERTIFICATE-----
-MIICertificatePlaceholder
------END CERTIFICATE-----`;
-
-    return {
-      certificateId,
-      serialNumber,
-      subject,
-      certificate,
-      validFrom: validFrom.toISOString(),
-      validTo: validTo.toISOString(),
-      requestedAt: new Date().toISOString(),
-    };
+    throw new Error('QES certificate issuance requires CA integration (EJBCA). Not yet configured.');
   }
 }
 
