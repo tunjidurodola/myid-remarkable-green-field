@@ -20,7 +20,7 @@ export interface ConsentRequest {
 }
 
 /**
- * Universal Consent Token (UCT) Manager
+ * User Consent Token (UCT) Manager
  * Implements enterprise consent lifecycle
  */
 export class UCTManager {
